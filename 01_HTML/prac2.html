@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>설문조사</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="">
+        <h3>설문조사</h3>
+        <label for="id">이름</label>
+        <input type="text" id="id" /> <br />
+        <label for="email">이메일</label>
+        <input type="email" id="email" placeholder="abcd@naver.com" />
+
+        <h4>나이</h4>
+        <label for="a10">10대</label>
+        <input type="radio" name="age" id="a10" />
+        <label for="a20">20대</label>
+        <input type="radio" name="age" id="a20" />
+        <label for="a30">30대</label>
+        <input type="radio" name="age" id="a30" />
+        <label for="a40">40대</label>
+        <input type="radio" name="age" id="a40" />
+        <label for="a50">50대</label>
+        <input type="radio" name="age" id="a50" />
+        <label for="a60">60대 이상</label>
+        <input type="radio" name="age" id="a60" />
+
+        <h4>원하는 강의(복수응답가능합니다.)</h4>
+        <label for="html">html</label>
+        <input type="checkbox" name="lecture" id="html" />
+        <label for="javascript">javascript</label>
+        <input type="checkbox" name="lecture" id="javascript" />
+        <label for="css">css</label>
+        <input type="checkbox" name="lecture" id="css" />
+
+        <br />
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="하고 싶은 말을 써주세요:>"></textarea>
+        <br />
+        <button>제출</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form 구성 태그</title>
+  </head>
+  <body>
+    <form action="">
+      <label>ID<input type="text" placeholder="ID를 입력해주세요" /></label> <br />
+      <label>PASSWORD<input type="password" /></label> <br />
+      <!-- 웹 접근성을 위해 라벨태그를 사용하는게 권장된다 -->
+      <label for="email">email</label>
+      <input type="email" id="email" />
+      <br />
+      <!-- for 속성 사용시 예제 -->
+      <label>input button<input type="button" value="로그인" /></label> <br />
+      <label>submit button<input type="submit" value="로그인" /></label> <br />
+      <label>button tag</label><button>로그인</button>
+      <!-- 버튼 태그는 기본적으로 submit속성을 가진다 -->
+      <input type="color" /><br />
+      <input type="file" /><br />
+      <input type="number" /><br />
+      <input type="date" /><br />
+      <input type="range" /><br />
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <hr />
+      <h2>다음 중 input의 타입이 아닌 것은??</h2>
+      <label for="alt">alt</label>
+      <input type="checkbox" name="input" id="alt" />
+      <label for="img">img</label>
+      <input type="checkbox" name="input" id="img" />
+      <label for="text">text</label>
+      <input type="checkbox" name="input" id="text" />
+      <label for="date">date</label>
+      <input type="checkbox" name="input" id="date" />
+      <label for="click">click</label>
+      <input type="checkbox" name="input" id="click" />
+      <!-- name 속성을 통해서 그룹을 지어야 정상 동작한다 -->
+      <hr />
+      <h2>다음 중 img 태그의 속성인 것은??</h2>
+      <label for="alt_r">alt</label>
+      <input type="radio" name="img" id="alt_r" checked />
+      <label for="img_r">img</label>
+      <input type="radio" name="img" id="img_r" />
+      <label for="text_r">text</label>
+      <input type="radio" name="img" id="text_r" />
+      <label for="date_r">date</label>
+      <input type="radio" name="img" id="date_r" />
+      <label for="click_r">click</label>
+      <input type="radio" name="img" id="click_r" />
+      <hr />
+      <h2>select box</h2>
+      <select name="" id="">
+        <optgroup label="아시아">
+          <option value="한국">한국</option>
+          <option value="일본">일본</option>
+          <option value="중국" disabled>중국</option>
+        </optgroup>
+        <optgroup label="어..음">
+          <option value="미국">미국</option>
+          <option value="영국">영국</option>
+        </optgroup>
+      </select>
+    </form>
+  </body>
+</html>
