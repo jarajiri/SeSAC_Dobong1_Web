@@ -1,0 +1,75 @@
+.d-block{
+    display: none;
+    background-color: aqua;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    margin: 20px;
+}
+.d-inline{
+    display: none;
+    background-color: pink;
+    border: 1px solid black;
+    /* width: 100px;
+    height: 100px; */
+    /* padding: 15px;
+    margin: 20px; */
+}
+.d-inline-block{
+    display: none;
+    background-color: blueviolet;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    margin: 15px;
+}
+
+.parent{
+    display: none;
+    width: 200px;
+    /* width -> 300px : min은 400px유지, max는 같이 줄어든다 */
+    /* width -> 500px : min은 400px유지, max는 같이 늘어난다 */
+    height: 200px;
+    background-color: red;
+}
+
+.parent > .min{
+    min-width: 400px;
+    height: 100px;
+    background-color: orange;
+}
+
+.parent > .max{
+    max-width: 400px;
+    height: 100px;
+    background-color: gray;
+}
+
+.box {
+    background-color: gray;
+    border: 1px solid black;
+}
+
+.box-px{
+    width: 50px;
+    height: 50px;
+}
+.box-vw{
+    width: 50vw;
+    height: 50vh;
+}
+/* bow-per의 부모는 body */
+/* body는 기본 높이가 없다 */
+.box-per{
+    width: 50%;
+    height: 50%;
+}
+.rem{
+    font-size: 2rem;
+}
+/* em은 부모의 사이즈값을 가져온다 */
+.em{
+    font-size: 1.5em;
+}

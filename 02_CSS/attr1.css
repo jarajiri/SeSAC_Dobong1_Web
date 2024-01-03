@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Oswald&display=swap');
+@font-face {
+    font-family: 'KartriderExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/KartriderExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+.font-link{
+    font-family: 'Oswald', sans-serif;
+}
+
+.font-import{
+    font-family: 'Black Han Sans', sans-serif;
+}
+.noonnu{
+    font-family: 'KartriderExtraBold', serif;
+}
+.setences{
+    font-weight: 200;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: underline;
+    line-height: 2;
+    /* 보통 height값이랑 맞춰 세로 정렬할때 사용 */
+}
+a{
+    text-decoration: none;
+    color: black;
+    /* 색깔 지정 방법 */
+    /* 1. 색상 이름 지정 : red,black... */
+    /* 2. rgb(-,-,-) 0~255 숫자로  */
+    /* 3. #______ 16진수로 표현, #c358ab, #ffffff... */
+    color: #000000;
+    color: rgba(0, 0, 0,0.3);
+}

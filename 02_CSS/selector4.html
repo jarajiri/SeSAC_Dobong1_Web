@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>selector-속성선택자</title>
+    <style>
+      [disabled] {
+        background-color: red;
+      }
+      [placeholder] {
+        background-color: yellow;
+      }
+      [type="password"] {
+        background-color: aqua;
+      }
+      [class="square"] {
+        width: 50px;
+        height: 50px;
+        background-color: blueviolet;
+        border: 1px solid black;
+      }
+      /* 속성, 클래스 선택자 우선순위는 같음 */
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="text1" />
+    <input type="text" placeholder="text2" />
+    <input type="text" placeholder="text3" disabled />
+    <input type="password" />
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+  </body>
+</html>
