@@ -32,6 +32,29 @@
             border-radius: 10px;
             border: none;
           }
+          h3:hover {
+            color: white;
+            background-color: black;
+          }
+          #ta:hover {
+            background-color: pink;
+          }
+          #red:checked + label {
+            background-color: red;
+            color: white;
+          }
+          #blue:checked + label {
+            background-color: blue;
+            color: white;
+          }
+          #yellow:checked + label {
+            background-color: yellow;
+            color: white;
+          }
+          button:active {
+            background-color: gray;
+            color: red;
+          }
         </style>
       </head>
       <body>
@@ -45,13 +68,13 @@
 
           <!-- checkbox와 textarea 만들기 -->
           <label for="ta"></label>
-          <textarea name="textarea" id="ta" cols="30" rows="10" placeholder="건의사항"></textarea>
-          <label for="red">빨강</label>
+          <textarea name="" id="ta" cols="30" rows="10" placeholder="건의사항"></textarea>
           <input type="checkbox" name="color" id="red" />
-          <label for="blue">파랑</label>
+          <label for="red">빨강</label>
           <input type="checkbox" name="color" id="blue" />
-          <label for="yellow">노랑</label>
+          <label for="blue">파랑</label>
           <input type="checkbox" name="color" id="yellow" />
+          <label for="yellow">노랑</label>
           <button>제출</button>
         </form>
       </body>
