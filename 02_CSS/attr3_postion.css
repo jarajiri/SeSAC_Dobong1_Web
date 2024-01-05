@@ -1,0 +1,95 @@
+body{
+    background: linear-gradient(white,black);
+    height: 2000px;
+    margin: 0;
+    padding: 0;
+}
+div{
+    width: 100px;
+    height: 100px;
+    font-weight: 700;
+    text-align: center;
+    border: 1px solid black;
+    line-height: 100px;
+}
+/* static */
+/* -기본값, 작성하지 않아도 됨 */
+/* -top,bottom,left,right 속성 적용 안됨 */
+.static{
+    position: static;
+    background-color: cadetblue
+    /* top: 50px; */
+}
+/* relative */
+/* -일반적인 문서 흐름에 따라서 배치가 됨(자기 자리보존) */
+/* -자기 자신을 기준으로 배치 */
+.relative{
+    position: relative;
+    background-color: rgb(111, 95, 160);
+    left: 100px;
+    
+}
+/* absolute */
+/* -static이 아닌 값을 갖는 제일 가까운 조상 기준 */
+/* -문서 흐름을 벗어남(자기 자리가 없어짐) */
+.absolute{
+    position: absolute;
+    background-color: rgb(160, 133, 95);
+    top: 200px;    
+    right: 200px;
+}
+/* fixed */
+/* -viewport 기준으로 특정 위치에 배치 */
+/* -스크롤 되어도 움직이지 않음 > header 제작시 많이 이용 */
+.fixed{
+    position: fixed;
+    background-color: rgb(124, 95, 160);
+    top: 0;
+    right: 300px;
+}
+.container{
+    width: 500px;
+    height: 500px;
+    position: relative;
+}
+.container2{
+    width: 500px;
+    height: 500px;
+    position: relative;
+}
+.item1{
+    position: relative;
+    left: 50px;
+    top: 30px;
+}
+.item2{
+    position: absolute;
+    right: 30px;
+    bottom: 100px;
+}
+.item3{
+    position: fixed;
+    right: 100px;
+    top: 100px;
+}
+.container div{
+    width: 100px;                                                                                        
+    height: 100px;
+    border-radius: 50px;
+    position: absolute;
+}
+.container div:nth-child(1){
+    background-color: aqua;
+    z-index: 1;
+}
+.container div:nth-child(2){
+    background-color: rgb(118, 169, 169);
+    top: 30px;
+    left: 30px;
+    z-index: -1;
+}
+.container div:nth-child(3){
+    background-color: rgb(201, 233, 233);
+    top: 60px;
+    left: 60px;
+}

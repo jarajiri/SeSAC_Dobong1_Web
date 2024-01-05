@@ -73,3 +73,86 @@
 .em{
     font-size: 1.5em;
 }
+
+.square{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    /* hover시 커서모양 변경 */
+    cursor: pointer;
+    background-color: blanchedalmond;
+}
+.border{
+    background-color: aqua ;
+    border: 3px solid black;
+    border-style: dotted;
+    border-width: 3px;
+    border-color: red orange;
+
+}
+.rounded{
+    background-color: aquamarine;
+    border-radius: 5px 10px 15px 20px;
+}
+
+.divv{
+    display: inline-block;
+    background-color: brown;
+    border: 3px solid black;
+    width: 100px;
+    height: 100px;
+}
+.width{
+    border-width: 3px;
+}
+.style{
+    border-style: dashed;
+}
+.color{
+    border-color: green yellow;
+}
+.dire{
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 30px;
+}
+
+.box-sizing{
+    padding: 20px;
+    border: 15px solid red;
+    background-color: pink;
+}
+
+.cotent-box{
+    box-sizing: content-box;
+}
+.border-box{
+    box-sizing: border-box;
+}
+.d-none {
+    display: none;
+    background-color: red;
+}
+.invisible {
+    visibility: hidden;
+    background-color: orangered;
+}
+.opacity-0 {
+    opacity: 0.2;
+    background-color : tomato
+}
+.test:hover{
+    opacity: 0;
+}
+
+.overflow-hidden{
+    overflow: hidden;
+}
+.overflow-auto{
+    overflow: auto;
+}
+.overflow-scroll{
+    overflow: scroll;
+}
+.overflow-visible{
+    overflow: visible;
+}
