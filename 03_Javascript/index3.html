@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>변수와 연산자</title>
+  </head>
+  <body>
+    <script>
+      // var
+      // -재할당, 재선언 모두 가능
+      // 재선언 : 바람직하지 않음
+      var name = "홍박사";
+      var name = "조주봉";
+      console.log(name);
+
+      // let
+      // -재선언 불가능
+      // -초기화 불필요
+
+      let c;
+      c = "hellworld"; // 재할당
+      console.log(c);
+
+      // const
+      // -재선언, 재할당 모두 불가
+      // -변하지 않는 값을 변수에 저장할때 사용
+      // -최초 선언시 반드시 값 할당(초기화)
+      const b = "b";
+      // const b = "c"; 재할당 불가
+      console.log(b);
+
+      let q1 = 3;
+      q1 = q1 - 3;
+      console.log(q1);
+
+      // 비교 연산자
+      // (참고) = 은 대입연산자
+      /* 1. == (값만 비교하는 연산자) */
+      console.log("== 연산자");
+      console.log(1 == 1);
+      console.log(1 == 2);
+      console.log(1 != 2);
+      console.log(1 != 1);
+      console.log("1" == 1);
+      console.log("1" != 1);
+
+      // js의 이상한 점
+      console.log("js 이상한점");
+      console.log("" == "0");
+      console.log(false == "0");
+      console.log(0 == "0");
+      console.log("" == 0);
+      console.log(undefined == null);
+
+      /* 2. 비교연산자 === (값과 data type까지 비교) */
+      console.log("=== 연산자");
+      console.log("1" === 1);
+      console.log(undefined === null);
+      console.log("" === 0);
+      console.log(1 === 1);
+
+      // 크기 비교
+      console.log("크기비교");
+      console.log(2 > 1);
+      console.log("a" < "b");
+
+      // 산술 연산
+      console.log("산술연산자");
+      console.log(1 - 2);
+      console.log(7 / 2);
+      console.log(7 % 2);
+      console.log(7 ** 2);
+
+      // 논리 연산
+      console.log("논리 연산");
+      console.log(!true);
+      console.log(!false);
+      console.log(!(1 === 1));
+      // $$ (and 연산자는 false일 확률이 높은 조건을 앞쪽에 배치, 성능상 이슈)
+      console.log(true && true); //true
+      console.log(true && false); //false
+
+      // || (or 연산자는 true일 확률이 높은 조건을 앞쪽에 배치)
+      console.log(true || true); //true
+      console.log(true || false); //true
+      console.log(false || false); //false
+
+      // 문자와 변수를 같이 쓰는 방법
+      const str1 = "allie";
+      const str2 = "서울";
+      console.log(`${str1}는 ${str2}에 삽니다`);
+
+      let foo = 1;
+      {
+        console.log(foo);
+        let foo = 2;
+      }
+    </script>
+  </body>
+</html>
