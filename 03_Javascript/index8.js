@@ -78,5 +78,5 @@ console.log(nowDay.getDay());
 (nowDay.getDay() === 0 || nowDay.getDay() === 6) ? console.log("주말입니다") : console.log("평일입니다");
 
 /* 실습 4 */
-let ranNum = parseInt(Math.random()*10)+1;
+let ranNum = parseInt(Math.random()*11);
 console.log(ranNum);
