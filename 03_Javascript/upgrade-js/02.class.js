@@ -100,6 +100,17 @@ let rec2 = new Rectangle(3,4);
 console.log(rec2.getDiagonal());
 
 class Triangle extends Shape{
+    constructor(ver,hor){
+        super(ver,hor)
+    }
+    getArea(){
+        return this.ver*this.hor/2;
+    }
+}
+
+let rec3 = new Rectangle(3,4);
+
+class Circle extends Shape{
     constructor(ver,hor,radius){
         super(ver,hor);
         this.radius = radius;

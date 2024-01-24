@@ -1,0 +1,14 @@
+<header>
+  <ul>
+    <li><a href="/login">login</a></li>
+    <li><a href="/register">sign-up</a></li>
+    <li><a href="/">home</a></li>
+  </ul>
+
+  <% if(isLogin){ %>
+  <div>안녕하세요, <%= userInfo.name%> 님</div>
+  <p><%= userInfo.msg %></p>
+  <% } else {%>
+  <div>로그인이 필요합니다.</div>
+  <% } %>
+</header>
