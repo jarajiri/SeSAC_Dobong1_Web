@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>axios post 로그인</title>
+    <!-- axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form name="register">
+      <label for="id">ID</label>
+      <input type="text" name="id" id="id" />
+      <br />
+      <label for="id">PW</label>
+      <input type="password" name="pw" id="pw" />
+      <button type="button" onclick="axiosSubmit()">로그인</button>
+      <div class="msgbox"></div>
+    </form>
+    <script>
+      function axiosSubmit() {
+        const form = document.forms["register"];
+        const msgbox = document.querySelector(".msgbox");
+        const data = {
+          id: form.id.value,
+          pw: form.pw.value,
+        };
+        axios({
+          method: "post",
+          url: "/prac2",
+          params: data,
+        })
+          .then(function (res) {
+            console.log(data);
+            console.log(res.data);
+            // console.log(typeof data);
+            // console.log(typeof res.data);
+            console.log("post axios 전송성공");
+            if (res.data.id === data.id && res.data.pw === data.pw) {
+              const msg = document.createElement("p");
+              msg.innerText = "로그인 완료";
+              msg.style.color = "blue";
+              msgbox.innerHTML = "";
+              msgbox.append(msg);
+            } else {
+              const msg = document.createElement("p");
+
+              msg.innerText = "로그인 정보가 올바르지 않습니다";
+              msg.style.color = "red";
+              msgbox.innerHTML = "";
+              msgbox.append(msg);
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    </script>
+  </body>
+</html>
