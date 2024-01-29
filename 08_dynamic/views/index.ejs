@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동적폼전송</title>
+    <style>
+      body {
+        color: cadetblue;
+        background-color: beige;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>동적폼 연습하기</h2>
+    <!-- 동적폼전송 시 꼭 폼이 필요한건 아니다 -->
+    <!-- 이름과 성별을 입력받는 폼 -->
+    <form name="register">
+      <input type="text" name="name" required placeholder="이름입력해주세요" />
+      <br />
+      성별을 선택해주세요
+      <input type="radio" name="gender" id="male" value="남자" required />
+      <label for="male">남성</label>
+      <input type="radio" name="gender" id="female" value="여자" required />
+      <label for="female">여성</label>
+      <br />
+      <br />
+      <button type="button" onclick="ajaxGet()">Ajax Get 제출</button>
+      <button type="button" onabort="ajaxPost()">Ajax Post 제출</button>
+      <br />
+      <button type="button" onclick="axiosGet()">axios Get 제출</button>
+      <button type="button" onabort="axiosPost()">axios Post 제출</button>
+      <br />
+      <button type="button" onclick="fetchGet()">fetch Get 제출</button>
+      <button type="button" onabort="fetchPost()">fetch Post 제출</button>
+      <br />
+      <!-- 동적폼 전송 결과를 보여줄 곳 -->
+      <div class="result"></div>
+    </form>
+
+    <script></script>
+  </body>
+</html>

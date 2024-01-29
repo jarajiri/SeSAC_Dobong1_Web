@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+  </head>
+  <style>
+    /* label {
+      display: inline-block;
+      padding: 5px;
+    } */
+  </style>
+  <body>
+    <h2>GET 요청</h2>
+    <form action="/getForm" method="get">
+      <label for="id">
+        id:
+        <input type="text" name="id" id="id" />
+      </label>
+      <br />
+      <label for="email">
+        email:
+        <input type="email" name="email" id="email" />
+      </label>
+      <br />
+      <label for="pw">
+        pw:
+        <input type="password" name="pw" id="pw" />
+      </label>
+      <br />
+      <button type="button">제출(버튼)</button>
+      <button type="submit">제출(서밋)</button>
+    </form>
+
+    <h2>POST 요청</h2>
+    <form action="/postForm" method="post">
+      <label for="id2">ID</label>
+      <input
+        type="text"
+        id="id2"
+        name="id2"
+        placeholder="배고파"
+        pattern="^([a-zA-Z0-9가-힣]{4,10})$"
+        title="아이디는 영어 대소문자, 숫자, 한글로 이루어진 4자이상 10자 이하"
+        required />
+      <br />
+      <label for="password">PW</label>
+      <input
+        type="password"
+        id="password"
+        name="pw"
+        placeholder="비밀번호 입력해주세요"
+        pattern="^([a-z0-9]{8,12})$"
+        title="비밀번호는 영어 소문자, 숫자로 이루어진 8자이상 12자 이하"
+        required />
+
+      <fieldset>
+        <legend>체크박스</legend>
+        <label
+          ><input type="checkbox" name="agree" placeholder="배고파" value="마케팅 동의" />마케팅
+          동의</label
+        >
+        <br />
+        <label
+          ><input type="checkbox" name="agree" placeholder="배고파" value="개인정보 동의" />개인정보
+          동의</label
+        >
+        <br />
+        <label
+          ><input type="checkbox" name="agree" placeholder="배고파" value="이용약관 동의" />이용약관
+          동의</label
+        >
+        <!-- 체크박스나 라디오는 벨류값을 설정해야 서버에 데이터로 받아올때 값이 제대로 넘어온다 -->
+      </fieldset>
+      <input type="submit" value="제출" />
+    </form>
+
+    <h2>유효성 검사</h2>
+    <form
+      action="/js-form-check"
+      method="post"
+      name="validationForm"
+      target="_blank"
+      onsubmit="return checkForm(this)">
+      <input
+        type="text"
+        name="id"
+        id="input"
+        minlength="1"
+        placeholder="ID 입력해주세요"
+        title="최소 한글자 이상 입력해주세요" />
+      <br />
+      <div>우편물 수령 장소</div>
+      <label for=""> <input type="checkbox" name="mail" id="회사" /> 회사 </label>
+      <label for=""><input type="checkbox" name="mail" id="자택" /> 자택</label>
+
+      <br />
+      <button type="submit">제출</button>
+    </form>
+    <script>
+      function checkForm(form) {
+        console.log(form);
+        // const form = document.forms["validationForm"];
+        // const form = document.forms["네임 속성"];
+
+        console.log(form.input); // id 참조
+        console.log(form.id); // name 참조
+
+        /* id 공백 */
+        if (form.id.value === "") {
+          //submit 이벤트를 실행하지 않도록 return false;
+          return false;
+        }
+        if (!form.mail[0].checked && !form.mail[1].checked) {
+          alert("수령 장소를 선택해주세요");
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

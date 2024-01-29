@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>result</title>
+  </head>
+  <!-- 
+    {
+    title: "GET",
+    userInfo: req.query, //{id:'',email:'',pw:''}
+    }
+  -->
+  <body>
+    <h2><%=title %>요청 확인하기</h2>
+    <div><span><%=userInfo.id %>(<%=userInfo.email %>)</span>님 환영합니다!</div>
+    <div>비밀번호는 <span><%=userInfo.pw %></span> 입니다.</div>
+    <a href="/">Home</a>
+
+    <%# ejs 주석 처리 방법 %>
+  </body>
+</html>
