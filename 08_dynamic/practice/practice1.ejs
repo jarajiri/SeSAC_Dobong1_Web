@@ -66,6 +66,14 @@
             ckLike.push(like.value);
           }
         }
+        // 리더님 코드
+        // const favs = [];
+        // form.like.forEach((element) => {
+        //   if (element.checked) {
+        //     ckLike.push(element.value);
+        //   }
+        // });
+
         const data = {
           name: form.name.value,
           gender: form.gender.value,
@@ -84,6 +92,8 @@
         })
           .then(function (res) {
             console.log("get axios 전송성공");
+            console.log(res);
+            console.log(res.data);
           })
           .catch((err) => console.log(err));
       }

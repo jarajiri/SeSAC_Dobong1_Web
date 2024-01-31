@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mypage</title>
+    <link rel="stylesheet" href="./public/mypage.css" />
+  </head>
+  <style></style>
+  <body>
+    <h2 class="title"><%= userInfo.name %>님 마이페이지</h2>
+    <div class="container">
+      <img src="<%= profile.path %>" alt="profile" class="profile" />
+      <div class="id">아이디 : <%= userInfo.id %></div>
+      <div class="pw">비밀번호 : <%= userInfo.pw %></div>
+      <div class="name">이름 : <%= userInfo.name %></div>
+      <div class="age">나이 : <%= userInfo.age %></div>
+    </div>
+  </body>
+</html>
