@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board</title>
+    <%- include('./include/head.ejs') %>
+  </head>
+  <body>
+    <!-- {
+        contentID: 1,
+        title: "안녕",
+        content: "안녕하세요? 대답.",
+        img: null, // null or path(string)
+      } -->
+    <%- include('./include/header.ejs') %>
+    <h2><%= title %></h2>
+    <div>
+      <p><%= contentID %></p>
+      <%if(img) {%>
+      <img src="/<%= img %>" alt="<%= contentID %>" width="200px" />
+      <% } %>
+    </div>
+  </body>
+</html>

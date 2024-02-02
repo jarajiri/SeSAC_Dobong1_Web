@@ -5,6 +5,7 @@ const PORT = 8082;
 const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
+
 try {
   fs.readdirSync("uploads"); // 폴더 확인
 } catch (err) {
@@ -25,6 +26,12 @@ const uploadDetail = multer({
       //   done(null, path.basename(file.originalname, extension) + extension);
       done(null, path.basename(req.body.name, extension) + extension);
     },
+    /* 이렇게도 사용가능 */
+    /* 
+    destination(req,file,done){
+        codes~~
+    }
+    */
   }),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
 });

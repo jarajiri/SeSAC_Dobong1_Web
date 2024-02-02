@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글 작성하기(폼 태그 제출)</title>
+    <%- include('./include/head.ejs') %>
+  </head>
+  <body>
+    <h1>글 작성하기</h1>
+    <form action="/blog/post" method="post" enctype="multipart/form-data">
+      <input type="text" name="title" placeholder="title" />
+      <br />
+      <textarea name="" cols="30" rows="10" name="content" placeholder="content"></textarea>
+      <br />
+      <input type="file" name="img" />
+      <br />
+      <button type="submit">글쓰기</button>
+    </form>
+  </body>
+</html>
