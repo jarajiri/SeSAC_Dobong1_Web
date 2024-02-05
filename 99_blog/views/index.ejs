@@ -21,7 +21,7 @@
       <% for(let content of data) {%>
       <li>
         <a href="/content/<%= content.contentID %>"><%= content.title %></a>
-        <button onclick="deleteContent('<%=content.contentID%>',this)">삭제</button>
+        <button on onclick="deleteContent('<%=content.contentID%>',this)">삭제</button>
       </li>
       <% } %>
     </ul>
