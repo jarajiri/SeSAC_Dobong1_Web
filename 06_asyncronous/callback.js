@@ -5,13 +5,13 @@ function goMart() {
   console.log("마트에 들어간다");
 }
 
-function pickDrink(callback) {
+function pickDrink(cb) {
   console.log("음료를 고른다");
   setTimeout(() => {
     console.log("고민 끝");
     product = "제로콜라";
     price = 2000;
-    callback();
+    cb();
   }, 3000);
 }
 

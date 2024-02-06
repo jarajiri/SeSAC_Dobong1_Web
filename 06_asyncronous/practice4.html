@@ -38,14 +38,23 @@
           }, 1000);
         });
       }
-      changeBgc(0)
-        .then(() => {
-          let num = 1;
-          return changeBgc(num);
-        })
-        .then(() => changeBgc(2))
-        .then(() => changeBgc(3))
-        .then(() => changeBgc(4));
+      // changeBgc(0)
+      //   .then(() => {
+      //     let num = 1;
+      //     return changeBgc(num);
+      //   })
+      //   .then(() => changeBgc(2))
+      //   .then(() => changeBgc(3))
+      //   .then(() => changeBgc(4));
+
+      async function exec() {
+        await changeBgc(0);
+        await changeBgc(1);
+        await changeBgc(2);
+        await changeBgc(3);
+        await changeBgc(4);
+      }
+      exec();
     </script>
   </body>
 </html>

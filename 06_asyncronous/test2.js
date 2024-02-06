@@ -22,11 +22,11 @@ function printSomething(num) {
 }
 function alertSomething(num) {
   // 팝업알림 콜백함수
-  alert(`${num} : Hi~`);
+  console.log(`${num} : Hi~`);
 }
 
-const coolCounter = new Counter(); // 콜백함수 전달
-// const coolCounter = new Counter(alertSomething);
+// const coolCounter = new Counter(); // 콜백함수 전달
+const coolCounter = new Counter(alertSomething);
 
 coolCounter.increase(); // 1
 coolCounter.increase(); // 2

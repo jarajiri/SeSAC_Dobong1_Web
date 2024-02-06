@@ -55,3 +55,6 @@ select * from user where age BETWEEN 25 and 50;
 update user set pw = '12345678' where id = 'hong1234';
 --9
 delete from user where id='jungkrat';
+
+-- sql 문법 순서
+-- select >> from >> where >> group by >> having >> order by >> limit
