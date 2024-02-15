@@ -30,5 +30,3 @@ DESC user;
 
 -- user 테이블 데이터 조회
 SELECT * FROM user;
-
-select userid,pw from user where userid='apple' and pw='1234';

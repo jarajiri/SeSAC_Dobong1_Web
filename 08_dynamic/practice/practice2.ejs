@@ -26,6 +26,8 @@
           id: form.id.value,
           pw: form.pw.value,
         };
+        console.log(form);
+        console.log(form.id);
         console.log(form.id.checkValidity());
         if (!form.id.checkValidity() || !form.pw.checkValidity()) {
           console.log(form.id.validationMessage);
