@@ -1,0 +1,3 @@
+@server=http://localhost:8100
+
+GET {{server}}/

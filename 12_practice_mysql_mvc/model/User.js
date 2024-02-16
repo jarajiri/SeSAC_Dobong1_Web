@@ -6,14 +6,23 @@ const conn = mysql.createConnection({
   password: "1234",
   database: "DOBONG",
 });
-// TODO: 모델 코드
 
-// 전체 데이터 조회
+/* 요청 응답 과정
+  1.뷰에서 요청
+  2.컨트롤러에서 정보를 받아 모델로 넘겨줌(req.body, req.query, req.params ...)
+  3.모델에서 DB로 요청
+  4.DB가 데이터 삽입/삭제/조회 등의 결과값을 컨트롤러로 응답
+  5.컨트롤러에서 res 객체를 통해 뷰로 응답
+  뷰 -> 컨트롤러 -> 모델 -> DB -> 모델 -> 컨트롤러 -> 뷰
+*/
+
+// TODO: 모델 코드
+/* 유저 한명 조회 */
 exports.getOneUser = (data, cb) => {
   // console.log(data);
   conn.query(
     `SELECT * FROM user 
-  where userid='${data.userid}' and pw='${data.pw}'`,
+  where userid='${data.userid}' and pw='${data.pw}' LIMIT 1`, // LIMIT 1 : 회원가입시 중복체크를 하지 않아서 결과값이 여러 개일 수 있다.
     (err, rows) => {
       if (err) {
         // console.error("쿼리 실행 중 오류 발생:", err);
@@ -30,31 +39,30 @@ exports.getOneUser = (data, cb) => {
     }
   );
 };
+/* userid로 유저 한명 조회 */
 exports.getOneUserByUserId = (data, cb) => {
-  conn.query(
-    `SELECT * FROM user 
-  WHERE userid='${data.userid}'`,
-    (err, rows) => {
-      if (err) throw err;
-      console.log("프로필조회 결과", rows);
-      if (rows.length > 0) cb(rows[0]);
-      else cb(null);
-    }
-  );
+  const sql = `SELECT * FROM user 
+  WHERE userid='${data.userid}' LIMIT 1`;
+  conn.query(sql, (err, rows) => {
+    if (err) throw err;
+    console.log("프로필조회 결과", rows);
+    if (rows.length > 0) cb(rows[0]);
+    else cb(null);
+  });
 };
+/* 유저 정보 수정 */
 exports.editUser = (data, cb) => {
-  conn.query(
-    `UPDATE user 
-  SET pw='${data.pw}', name='${data.name}' 
-  where userid='${data.userid}'`,
-    (err, rows) => {
-      if (err) throw err;
-      console.log("DB 결과", rows);
-      if (rows.changedRows === 1) cb(true);
-      else cb(null);
-    }
-  );
+  // 바인딩 변수 사용
+  const { pw, name, userid } = data;
+  const sql = "update user set pw=?, name=? where userid=?";
+  conn.query(sql, [pw, name, userid], (err, rows) => {
+    if (err) throw err;
+    console.log("DB 결과", rows);
+    if (rows.changedRows === 1) cb(true);
+    else cb(null);
+  });
 };
+/* 유저 정보 삭제 */
 exports.deleteUser = (data, cb) => {
   conn.query(
     `DELETE FROM user 
@@ -66,15 +74,30 @@ exports.deleteUser = (data, cb) => {
     }
   );
 };
-
+/* 
+POST /user/signup
+유저 정보 등록 
+*/
 exports.insertUser = (data, cb) => {
-  conn.query(
-    `INSERT INTO user VALUES 
-  (null,'${data.userid}','${data.name}','${data.pw}')`,
-    (err, rows) => {
-      if (err) throw err;
-      if (rows.affectedRows === 1) cb(true);
-      else cb(null);
-    }
-  );
+  // console.log("model", data);
+  const { userid, name, pw } = data;
+  const sql = "INSERT INTO user VALUES (null,?,?,?)";
+  conn.query(sql, [userid, name, pw], (err, rows) => {
+    if (err) throw err;
+    // console.log(rows);
+    if (rows.affectedRows === 1) cb(true);
+    else cb(null);
+    // cb();
+  });
+  // conn.query(
+  //   `INSERT INTO user VALUES
+  // (null,'${data.userid}','${data.name}','${data.pw}')`,
+  //   (err, rows) => {
+  //     if (err) throw err;
+  //     // console.log(rows);
+  //     if (rows.affectedRows === 1) cb(true);
+  //     else cb(null);
+  //     // cb();
+  //   }
+  // );
 };

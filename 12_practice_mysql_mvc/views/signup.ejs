@@ -14,7 +14,7 @@
     </form>
     <div class="msg"></div>
     <!-- TODO: href 속성값 설정하기 -->
-    <a href="/user/signin">Login</a>
+    <a href="/user/signin">로그인 페이지</a>
 
     <script>
       // TODO: [Register] 버튼 클릭시 서버에 회원가입 요청하기
@@ -22,6 +22,13 @@
       function register() {
         const form = document.forms["form_register"];
         const msg = document.querySelector(".msg");
+
+        // 유효성 검증
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
         axios({
           method: "post",
           url: "/user/signup",
@@ -32,9 +39,11 @@
           },
         })
           .then((res) => {
+            console.log(res.data);
             if (res.data) {
               alert("회원가입 성공");
-              window.location.href = "/user/signin";
+              // window.location.href = "/user/signin";
+              document.location.href = "/user/signin";
             } else {
               msg.innerHTML = "가입 실패";
             }

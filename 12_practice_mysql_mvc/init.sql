@@ -30,3 +30,6 @@ DESC user;
 
 -- user 테이블 데이터 조회
 SELECT * FROM user;
+
+SELECT * FROM user
+where userid='' or 1=1; --' and pw='1234' LIMIT 1

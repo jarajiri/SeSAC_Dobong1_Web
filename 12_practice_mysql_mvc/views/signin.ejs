@@ -21,7 +21,7 @@
     </form>
 
     <!-- TODO: href 속성값 설정하기 -->
-    <a href="/user/signup">Register</a>
+    <a href="/user/signup">회원가입 페이지</a>
 
     <script>
       // TODO: [Login] 버튼 클릭시 서버에 로그인 요청하기
@@ -30,6 +30,12 @@
       const formLogin = document.forms["form_login"];
 
       function login() {
+        //유효성 검증
+        if (!formLogin.checkValidity()) {
+          formLogin.reportValidity();
+          return;
+        }
+
         axios({
           method: "post",
           url: "/user/signin",
@@ -40,10 +46,17 @@
         })
           .then((res) => {
             if (!res.data) {
+              //로그인 실패
               alert("아이디 비밀번호 확인");
+              // input창 초기화
+              form.reset();
             } else {
-              console.log(res.data);
+              // 로그인 성공시
+              // 1. 로그인 성공 alert 띄우기
+              alert("로그인 성공");
+              // 2. hidden input에 정보 전달
               formInfo.userid.value = res.data.userid;
+              // 3. hidden input form 제출
               formInfo.submit();
             }
           })
