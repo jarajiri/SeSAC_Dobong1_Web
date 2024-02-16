@@ -51,7 +51,6 @@ exports.postVisitors = (req, res) => {
     comment: req.body.comment,
     id: req.body.id,
   }).then((result) => {
-    console.log(result);
     res.send(result);
   });
 };
@@ -69,7 +68,7 @@ exports.deleteVisitors = (req, res) => {
     where: { id: req.body.id },
   }).then((result) => {
     console.log("sequelize destroy result", result); // 1(true),0(false)
-    res.send("번 방명록 삭제 완료");
+    res.send(req.body.id + "번 방명록 삭제 완료");
   });
 };
 
@@ -92,6 +91,6 @@ exports.patchVisitors = (req, res) => {
     }
   ).then((result) => {
     console.log("sequelize update result", result); // 1(true),0(false)
-    res.send(req.body.id + "수정 완료");
+    res.send(req.body.id + "번 수정 완료");
   });
 };

@@ -18,6 +18,7 @@ function createVisitor() {
     method: "post",
     url: "/visitors",
     data: {
+      id: form.id.value,
       name: form.name.value,
       comment: form.comment.value,
     },
@@ -69,10 +70,8 @@ function editVisitor(id) {
     method: "get",
     url: `/visitors/${id}`,
   }).then((res) => {
-    console.log(res);
     const { data } = res;
     console.log(data);
-
     const form = document.forms["visitor-form"];
     form.name.value = data.name;
     form.comment.value = data.comment;
@@ -105,6 +104,8 @@ function editDo(id) {
     console.log(children);
     children[1].textContent = form.name.value;
     children[2].textContent = form.comment.value;
+    console.log(res.data);
+    // alert(res.data);
   });
 }
 // 취소 버튼을 누르거나, 수정이 끝난 후 실행
