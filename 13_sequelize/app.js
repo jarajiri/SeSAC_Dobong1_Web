@@ -11,7 +11,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const indexRouter = require("./routes");
+const userRouter = require("./routes/user");
 app.use("/", indexRouter);
+app.use("/user", userRouter);
+
 app.get("*", (req, res) => {
   res.render("404");
 });

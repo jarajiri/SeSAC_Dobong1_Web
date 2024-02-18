@@ -6,7 +6,6 @@ const ctr = require("../controller/Cvisitor");
 router.get("/", ctr.main);
 router.get("/visitors", ctr.getVisitors);
 router.get("/visitors/:id", ctr.getOneVisitor);
-
 router.post("/visitors", ctr.postVisitors);
 router.delete("/visitors", ctr.deleteVisitors);
 router.patch("/visitors", ctr.patchVisitors);
