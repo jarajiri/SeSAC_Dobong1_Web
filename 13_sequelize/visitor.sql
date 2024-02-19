@@ -28,3 +28,4 @@ GRANT ALL PRIVILEGES ON *.* TO 'sesac'@'%' WITH GRANT OPTION;
 
 -- 현재 사용중인 MySQL 캐시를 지우고 새로운 설정 적용
 FLUSH PRIVILEGES;
+

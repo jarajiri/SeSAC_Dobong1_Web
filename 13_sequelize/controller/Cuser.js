@@ -1,3 +1,5 @@
+// const models = require("../models/index");
+// index 기본파일이라 생략가능
 const models = require("../models");
 
 // GET /user
@@ -17,8 +19,8 @@ exports.postSignup = (req, res) => {
     name: req.body.name,
     pw: req.body.name,
   }).then((result) => {
-    console.log("========", result);
-    res.send("회원가입 성공");
+    // console.log("========", result);
+    result != null ? res.send(true) : res.send(false);
   });
 };
 
@@ -36,7 +38,8 @@ exports.postSignin = (req, res) => {
       pw: req.body.pw,
     },
   }).then((result) => {
-    console.log("findOne ========", result);
+    // result: findOne을 이용해서 찾은 결과를 반환 or NULL
+    // console.log("findOne ======== ", result);
     if (result != null) {
       res.send(true);
     } else {
@@ -51,7 +54,7 @@ exports.profile = (req, res) => {
   models.User.findOne({
     where: { userid: req.body.userid },
   }).then((result) => {
-    console.log("result.dataValues ===========", result.dataValues);
+    // console.log("result.dataValues =========== ", result);
     result != null ? res.render("profile", result.dataValues) : res.send(false);
   });
 };

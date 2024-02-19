@@ -20,10 +20,10 @@ app.get("*", (req, res) => {
 });
 
 db.sequelize.sync({ force: false }).then((result) => {
-  console.log(result);
-  console.log("db 연결 성공!!");
+  // console.log(result);
+  console.log("================db 연결 성공!!");
 });
 
 app.listen(PORT, (req, res) => {
-  console.log("server open");
+  console.log("================server open");
 });
