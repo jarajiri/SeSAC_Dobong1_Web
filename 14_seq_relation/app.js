@@ -12,7 +12,7 @@ app.use(express.json());
 app.use("/", router);
 
 sequelize
-  .sync()
+  .sync({ force: false })
   .then(() => {
     app.listen(PORT, (req, res) => {
       console.log("server open");
