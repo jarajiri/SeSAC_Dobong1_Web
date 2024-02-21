@@ -1,7 +1,10 @@
 "use strict";
 
 const Sequelize = require("sequelize");
-const config = require(__dirname + "/../config/config.json")["development"];
+const config = require(__dirname + "/../config/config.js")["development"];
+// const config = require(__dirname + "/../config/config.json")["development"];
+
+console.log(config);
 const db = {};
 
 // Sequelize 클래스 사용해서 인스턴스 생성
