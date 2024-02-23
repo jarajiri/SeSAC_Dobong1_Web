@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('head', { title: '회원 정보' })%>
+  <body>
+    <h1>회원 정보</h1>
+    <a href="/">HOME</a>
+    <p>ID 수정 불가능, Password, Name 수정 가능</p>
+
+    <form name="form_profile">
+      <label for="userid">ID</label>
+      <input type="hidden" id="id" value="<%= id %>" />
+
+      <input id="userid" type="text" name="userid" value="<%= userid %>" readonly /><br />
+      <label for="password">Password</label>
+      <input id="password" type="password" name="pw" value="<%= pw %>" required /><br />
+      <label for="name">Name</label>
+      <input id="name" type="text" name="name" value="<%= name %>" required /><br />
+      <button type="button" onclick="profileEdit();">Edit</button>
+      <button type="button" onclick="profileDelete();">Delete</button>
+    </form>
+    <div class="msg"></div>
+
+    <script>
+      console.log(location.origin);
+      function profileEdit() {
+        const form = document.forms["form_profile"];
+        const msg = document.querySelector(".msg");
+        //유효성 검증
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        axios({
+          method: "patch",
+          url: "/profile/edit",
+          data: {
+            id: form.id.value,
+            pw: form.pw.value,
+            name: form.name.value,
+          },
+        })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data) {
+              msg.innerHTML = "수정 완료";
+            } else {
+              msg.innerHTML = "변경 오류, 나중에 다시 시도하세요";
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+
+      function profileDelete() {
+        const form = document.forms["form_profile"];
+        const msg = document.querySelector(".msg");
+        //유효성 검증
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        axios({
+          method: "delete",
+          url: "/profile/delete",
+          data: {
+            id: form.id.value,
+            userid: form.userid.value,
+            pw: form.pw.value,
+            name: form.name.value,
+          },
+        })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data) {
+              alert("삭제완료");
+              window.location.href = "/";
+            } else {
+              msg.innerHTML = "삭제 오류, 다시 시도하세요";
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    </script>
+  </body>
+</html>
