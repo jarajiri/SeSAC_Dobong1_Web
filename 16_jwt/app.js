@@ -75,4 +75,5 @@ app.post("/token", (req, res) => {
 
 app.listen(8080, () => {
   console.log("server open");
+  console.log("http://27.96.134.242:8080");
 });
