@@ -14,7 +14,11 @@ router.post("/login", controller.postLogin);
 
 router.get("/profile", controller.profile);
 
-// router.patch("/profile/edit", controller.editProfile);
+router.patch("/profile", controller.editProfile);
+
+router.delete("/profile", controller.deleteProfile);
+
+router.get("/logout", controller.logout);
 
 router.get("*", (req, res) => {
   res.render("404");

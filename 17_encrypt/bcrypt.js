@@ -22,6 +22,6 @@ console.log("암호화된 비밀번호::::", hashedPw);
 
 // 해시값 비교 테스트
 const isMatch1 = comparePw(originalPasword, hashedPw);
-const isMatch2 = comparePw("1234", hashedPw);
+const isMatch2 = comparePw(originalPasword, hashedPw);
 console.log("비밀번호 일치::::", isMatch1);
 console.log("비밀번호 일치::::", isMatch2);

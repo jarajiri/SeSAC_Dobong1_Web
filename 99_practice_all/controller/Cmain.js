@@ -1,57 +1,67 @@
 const models = require("../models");
 const { userModel } = require("../models");
+const { hashPw, comparePw } = require("../utils/bcrypt");
 
-// get /
+// GET /
 exports.main = (req, res) => {
-  res.render("index");
+  console.log(req.session.nid);
+
+  if (req.session.nid) {
+    res.render("index", { isLogin: true });
+  } else {
+    res.render("index", { isLogin: false });
+  }
 };
-// get /login
+// GET /login
 exports.login = (req, res) => {
+  // 세션 가져오기
   if (req.session.nid) {
     return res.redirect("/profile");
   }
   res.render("login");
 };
-// get /register
+
+// GET /register
 exports.register = (req, res) => {
   res.render("register");
 };
-// post /register
+
+// POST /register
 exports.postRegister = async (req, res) => {
-  console.log(req.body);
+  //   console.log(req.body);
   try {
     const { userid, pw, name } = req.body;
-    const newUser = await userModel.create({ name, userid, pw });
-    console.log(newUser);
-    res.send(newUser);
+    const newUser = await userModel.create({ name, userid, pw: hashPw(pw) });
+    newUser ? res.send(true) : res.send(false);
   } catch (error) {
-    console.log("error", error);
+    console.log("postRegister error::::", error);
     res.status(500).send("server error");
   }
 };
 
-// post /login
+// POST /login
 exports.postLogin = async (req, res) => {
-  console.log(req.body);
+  //   console.log(req.body);
   const { userid, pw } = req.body;
+  const isSame = comparePw(pw, hashPw(pw));
+  if (!isSame) return res.send(false);
   try {
-    const findOneUser = await userModel.findOne({
-      where: { userid: userid },
+    const User = await userModel.findOne({
+      where: { userid },
     });
-    if (findOneUser.userid === userid && findOneUser.pw === pw) {
-      req.session.nid = findOneUser.id;
-      console.log(req.session.nid);
+    if (User) {
+      req.session.nid = User.id;
       res.send(true);
     } else {
       res.send(false);
     }
   } catch (error) {
-    console.log("db 조회 에러", error);
-    res.status(500).send("서버 에러");
+    console.log("postLogin error::::", error);
+    res.status(500).send("server error");
   }
 };
 
-// get /profile
+// GET /profile
 exports.profile = async (req, res) => {
   console.log(req.session.nid);
   if (!req.session.nid) {
@@ -63,47 +73,75 @@ exports.profile = async (req, res) => {
         id: req.session.nid,
       },
     });
-    // console.log(findOneProfile);
-    if (findOneProfile) {
-      res.render("profile", {
-        id: findOneProfile.nid,
-        pw: findOneProfile.pw,
-        userid: findOneProfile.userid,
-        name: findOneProfile.name,
-      });
-    }
+    console.log("findOneProfile::::", findOneProfile);
+    res.render("profile", {
+      id: findOneProfile.id,
+      pw: "",
+      userid: findOneProfile.userid,
+      name: findOneProfile.name,
+    });
   } catch (error) {
-    console.log("db 조회 에러", error);
-    res.status(500).send("서버 에러");
+    console.log("profile error::::", error);
+    res.status(500).send("server error");
+  }
+};
+// PATCH /profile/edit
+exports.editProfile = async (req, res) => {
+  console.log(req.body);
+  const { id, pw, name } = req.body;
+
+  if (!req.session.nid) {
+    return res.redirect("/login");
+  }
+  try {
+    const updateProfile = await userModel.update(
+      { name, pw: hashPw(pw) },
+      {
+        where: { id },
+      }
+    );
+    console.log("updateProfile::::", updateProfile);
+    updateProfile > 0 ? res.send(true) : res.send(false);
+  } catch (error) {
+    console.log("updateProfile error::::", error);
+    res.status(500).send("server error");
   }
 };
 
-/* exports.editProfile = async (req, res) => {
-  const { id, pw, name } = req.body;
-  if (req.session.id) {
-    try {
-      const updateProfile = userModel.update(
-        { name, pw },
-        {
-          where: {
-            id: req.session.id,
-          },
-        }
-      );
-      console.log(updateProfile);
-      res.send("수정 완료");
-    } catch (error) {
-      console.log("db 조회 에러", error);
-      res.status(500).send("서버 에러");
+exports.deleteProfile = async (req, res) => {
+  console.log(req.body);
+  const { id, pw } = req.body;
+
+  if (!req.session.nid) {
+    return res.redirect("/login");
+  }
+  try {
+    // db 조회
+    const findUser = await userModel.findOne({
+      where: { id },
+    });
+    console.log(comparePw(pw, findUser.pw));
+    if (comparePw(pw, findUser.pw)) {
+      await userModel.destroy({
+        where: { id },
+      });
+      req.session.destroy((err) => {
+        if (err) throw err;
+      });
+      res.send(true);
+    } else {
+      res.send(false);
     }
-  } else {
-    // 세션값 없을때 (로그인 안한 상태)
-    alert("세션 만료");
-    res.redirect("/login");
+    // id 가 존재하고 해싱된 비밀번호가 일치할 경우
+  } catch (error) {
+    console.log("deleteProfile error::::", error);
+    res.status(500).send("server error");
   }
 };
- */
-//   //파라미터 값이 문자열일 경우 예외처리
-//   //   if (isNaN(req.param.id) || req.params.id < 0) {
-//   //     return res.render("404");
-//   //   }
+
+exports.logout = async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) throw err;
+  });
+  res.redirect("/");
+};

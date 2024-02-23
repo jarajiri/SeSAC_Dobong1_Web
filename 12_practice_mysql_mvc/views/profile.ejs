@@ -36,10 +36,9 @@
         }
         axios({
           method: "patch",
-          url: "/user/profile/edit",
+          url: "/profile/edit",
           data: {
             id: form.id.value,
-            userid: form.userid.value, //readonly라 사실 안보내도 됨
             pw: form.pw.value,
             name: form.name.value,
           },
@@ -49,7 +48,7 @@
             if (res.data) {
               msg.innerHTML = "수정 완료";
             } else {
-              msg.innerHTML = "변경 오류, 나중에 다시 시도하세요";
+              msg.innerHTML = "변경된 정보가 없음";
             }
           })
           .catch((err) => console.log(err));

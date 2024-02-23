@@ -32,7 +32,7 @@
         }
         axios({
           method: "patch",
-          url: "/profile/edit",
+          url: "/profile",
           data: {
             id: form.id.value,
             pw: form.pw.value,
@@ -44,7 +44,7 @@
             if (res.data) {
               msg.innerHTML = "수정 완료";
             } else {
-              msg.innerHTML = "변경 오류, 나중에 다시 시도하세요";
+              msg.innerHTML = "변경된 정보 없음";
             }
           })
           .catch((err) => console.log(err));
@@ -60,12 +60,10 @@
         }
         axios({
           method: "delete",
-          url: "/profile/delete",
+          url: "/profile",
           data: {
             id: form.id.value,
-            userid: form.userid.value,
             pw: form.pw.value,
-            name: form.name.value,
           },
         })
           .then((res) => {
@@ -74,7 +72,7 @@
               alert("삭제완료");
               window.location.href = "/";
             } else {
-              msg.innerHTML = "삭제 오류, 다시 시도하세요";
+              msg.innerHTML = "삭제된 정보 없음";
             }
           })
           .catch((err) => console.log(err));
