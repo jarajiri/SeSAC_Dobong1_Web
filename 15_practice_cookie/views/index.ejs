@@ -60,6 +60,7 @@
       // TODO : 쿠키없으면 모달 보여주기 (쿠키==='')
       if ("<%= popup%>" === "") {
         // popup쿠키가 없다면
+        // 모든 리소스 로드 후 DOM 트리 생성 후 실행
         window.onload = () => {
           myModal.show();
         };

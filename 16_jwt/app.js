@@ -43,7 +43,35 @@ app.post("/login", (req, res) => {
 });
 
 // 토큰 정보 확인 요청
-app.post("/token", (req, res) => {});
+app.post("/token", (req, res) => {
+  try {
+    // console.log(req.headers.authorization);
+    if (req.headers.authorization) {
+      const token = req.headers.authorization.split(" ")[1];
+      // 토큰만 가져옴
+      try {
+        console.log("token === ", token);
+        const auth = jwt.verify(token, SECRET);
+        console.log("auth ====== ", auth);
+        // verify() 리턴값 : { id: 'eic2021', iat: 1708656030 }
+        // iat(issued at) : 발급된 시간
+
+        if (userInfo.id === auth.id) {
+          res.send({ result: true, name: userInfo.name });
+        }
+      } catch (error) {
+        // 잘못된 정보가 들어왔을 때
+        console.log("토큰 인증 에러", error);
+        res.send({ result: false, message: "인증된 회원이 아닙니다." });
+      }
+    } else {
+      res.redirect("/login");
+    }
+  } catch (error) {
+    console.log("POST /token", error);
+    res.status(500).send("server error");
+  }
+});
 
 app.listen(8080, () => {
   console.log("server open");

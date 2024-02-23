@@ -33,6 +33,40 @@
         }
         */
         const { result, token, message } = response.data;
+        // result : 로그인 성공시 true, 로그인 실패시 false
+        // token : 로그인 성공시 토큰정보, 로그인 실패시 undefined
+        // message : 로그인 성공시 undefined, 로그인 실패시 "로그인 정보가 올바르지 않습니다."
+        if (result) {
+          // 로그인 성공시 토큰을 로컬 스토리지에 저장함
+          /*           
+          로컬 스토리지 ?
+           - 브라우저에 영구적으로 {키-값} 형태의 데이터를 저장 
+           - 쿠키와 비슷하게 클라이언트에 저장. 문자형 데이터 타입만 저장 가능
+           - 5KB 데이터 저장 가능(쿠키는 4KB)
+
+           1.로컬 스토리지 토큰 저장
+           localStorage.setItem("키이름1",data1); >> {키이름1:data1}
+           localStorage.setItem("키이름2",data2); >> {키이름1:data1, 키이름2:data2}
+
+           2.로컬 스토리지 토큰 삭제
+           localStorage.removeItem("키이름");
+
+           3.로컬 스토리지 토큰 가져오기
+           localStroage.getItem("키이름");
+
+           4.로컬 스토리지 전체 삭제
+           localStorage.clear();
+           */
+
+          localStorage.setItem("login", token);
+          document.location.href = "/";
+        } else {
+          // 로그인 실패시 메시지 정보 받아서 알림창 출력
+          alert(message);
+          // document.location.reload();
+          form.reset();
+          // 폼 초기화
+        }
       }
     </script>
   </body>

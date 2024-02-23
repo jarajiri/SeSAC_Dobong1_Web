@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dom model</title>
-    <script src="dom1.js"></script>
+    <!-- <script src="dom1.js"></script> -->
   </head>
   <body>
     <div class="container">
@@ -39,24 +39,24 @@
       //   console.log(dom2[i]);
       // }
 
-      // //3. getElementsByTagName : 태그 이름으로 요소 선택
-      // // HTMLCollecion (배열)으로 반환
-      // let dom3 = document.getElementsByTagName("div");
-      // console.log("dom3: ", dom3);
+      //3. getElementsByTagName : 태그 이름으로 요소 선택
+      // HTMLCollecion (배열)으로 반환
+      let dom3 = document.getElementsByTagName("div");
+      console.log("dom3: ", dom3);
 
       // //4. getElementsByName : name 속성 값으로 요소 선택
       // // NodeList 로 반환
       // let dom4 = document.getElementsByName("userName");
       // console.log("dom4 : ", dom4);
 
-      // //5. querySelector : 선택자를 이용해서 요소 선택
-      // // css 선택자와 동일(클래스:'.' id:'#' 태그:태그이름 등)
-      // let dom5 = document.querySelector("#red");
-      // console.log("dom5 : ", dom5);
+      //5. querySelector : 선택자를 이용해서 요소 선택
+      // css 선택자와 동일(클래스:'.' id:'#' 태그:태그이름 등)
+      let dom5 = document.querySelector("#red");
+      console.log("dom5 : ", dom5);
 
-      // let dom6 = document.querySelectorAll("div");
-      // // Nodelist
-      // console.log("dom6 : ", dom6);
+      let dom6 = document.querySelectorAll("div");
+      // Nodelist
+      console.log("dom6 : ", dom6);
 
       // /* 태그의 내부 내용을 변경
       // - innerText : 문자열 추가 & 공백 문자 제거
@@ -71,20 +71,20 @@
       // console.log(two.innerText);
 
       /* 부모 요소 선택 */
-      let parent = document.getElementById("parent");
-      let parentChildren = parent.children;
-      let parentChildNodes = parent.childNodes;
+      // let parent = document.getElementById("parent");
+      // let parentChildren = parent.children;
+      // let parentChildNodes = parent.childNodes;
 
-      console.log("children : ", parentChildren);
-      console.log("children : ", parentChildren.namedItem("two"));
-      console.log("childNodes : ", parentChildNodes);
+      // console.log("children : ", parentChildren);
+      // console.log("children : ", parentChildren.namedItem("two"));
+      // console.log("childNodes : ", parentChildNodes);
 
       /* 자식 추가
         추가할 부모 선택 -> 추가할 자식 만들고 -> 자식 붙여주기        
       */
-      let child1 = document.createElement("div");
-      child1.innerText = "네번째 Text";
-      parent.appendChild(child1);
+      // let child1 = document.createElement("div");
+      // child1.innerText = "네번째 Text";
+      // parent.appendChild(child1);
     </script>
   </body>
 </html>

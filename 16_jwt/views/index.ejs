@@ -9,6 +9,78 @@
   </head>
   <body>
     <h1>jwt</h1>
-    <div id="info"></div>
+
+    <div id="info">
+      <!-- <a href="/login">로그인</a>
+      <a href="/logout">로그아웃</a> -->
+    </div>
+    <script>
+      // 즉시 실행 함수
+      // 선언과 동시에 호출
+      /*       (function () {
+        console.log("즉시 실행 익명 함수");
+      })(); */
+      // 화살표 함수도 가능
+      /*       ((a) => {
+        console.log("arrow function");
+        console.log(a);
+      })(); */
+      //
+      /*       (function text(t) {
+        console.log(t);
+      })("t=안녕하세요"); */
+
+      /* 
+      즉시 실행 함수 사용 이유 ?
+      1. 전역 변수 사용을 피하기 위해서
+      - 전역 변수는 다른 코드에 영향을 미칠 수 있으므로 사용을 자제하는게 좋다.
+
+      2. 라이브러리 내의 전역변수 충돌을 피할 수 있음
+      - ex) jQuery 의 $ 
+      */
+
+      (async function () {
+        const info = document.getElementById("info");
+        const token = localStorage.getItem("login");
+
+        console.log(token);
+        console.log(info);
+
+        let data = "";
+        if (!token) {
+          // 토큰이 존재하면
+          data = document.createElement("a");
+          info.append(data);
+          data.innerText = "로그인";
+          data.href = "/login";
+        } else {
+          //
+          const response = await axios({
+            method: "post",
+            url: "/token",
+            headers: {
+              // get, post 요청등 일관성 있게 처리하기 위해 헤더에 요청을 보냄
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          console.log(response.data);
+          if (response.data.result) {
+            // 토큰 존재하고 인증된 사용자
+            data = `
+            <p>${response.data.name} 환영합니다.</p>
+            <button type="button" onclick="logout()">로그아웃</button>
+            `;
+            info.innerHTML = data;
+          }
+        }
+      })();
+
+      function logout() {
+        // 로컬스토리지에서 jwt 정보 삭제
+        localStorage.clear();
+        document.location.reload();
+      }
+    </script>
   </body>
 </html>
