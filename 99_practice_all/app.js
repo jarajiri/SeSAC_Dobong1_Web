@@ -3,7 +3,7 @@ const session = require("express-session");
 const router = require("./routes/router");
 const { sequelize } = require("./models");
 const app = express();
-const PORT = 8100;
+const dotenv = require("dotenv").config();
 
 /* 미들웨어 설정 */
 app.set("views", "./views");
@@ -14,7 +14,7 @@ app.use(express.json());
 
 /* 세션 설정 */
 const sessionConfig = {
-  secret: "secretKey",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -32,9 +32,9 @@ app.use("/", router);
 sequelize
   .sync({ force: false })
   .then(() => {
-    app.listen(PORT, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Database connection succeeded!");
-      console.log(`http://localhost:${PORT}`);
+      console.log(`http://localhost:${process.env.PORT}`);
     });
   })
   .catch((error) => {

@@ -28,7 +28,7 @@ exports.register = (req, res) => {
 
 // POST /register
 exports.postRegister = async (req, res) => {
-  //   console.log(req.body);
+  console.log(req.body);
   try {
     const { userid, pw, name } = req.body;
     const newUser = await userModel.create({ name, userid, pw: hashPw(pw) });
@@ -41,15 +41,13 @@ exports.postRegister = async (req, res) => {
 
 // POST /login
 exports.postLogin = async (req, res) => {
-  //   console.log(req.body);
+  console.log(req.body);
   const { userid, pw } = req.body;
-  const isSame = comparePw(pw, hashPw(pw));
-  if (!isSame) return res.send(false);
   try {
     const User = await userModel.findOne({
       where: { userid },
     });
-    if (User) {
+    if (comparePw(pw, User.pw)) {
       req.session.nid = User.id;
       res.send(true);
     } else {
@@ -85,7 +83,8 @@ exports.profile = async (req, res) => {
     res.status(500).send("server error");
   }
 };
-// PATCH /profile/edit
+
+// PATCH /profile
 exports.editProfile = async (req, res) => {
   console.log(req.body);
   const { id, pw, name } = req.body;
@@ -108,6 +107,7 @@ exports.editProfile = async (req, res) => {
   }
 };
 
+// DELETE /profile
 exports.deleteProfile = async (req, res) => {
   console.log(req.body);
   const { id, pw } = req.body;
@@ -116,7 +116,6 @@ exports.deleteProfile = async (req, res) => {
     return res.redirect("/login");
   }
   try {
-    // db 조회
     const findUser = await userModel.findOne({
       where: { id },
     });
@@ -132,13 +131,13 @@ exports.deleteProfile = async (req, res) => {
     } else {
       res.send(false);
     }
-    // id 가 존재하고 해싱된 비밀번호가 일치할 경우
   } catch (error) {
     console.log("deleteProfile error::::", error);
     res.status(500).send("server error");
   }
 };
 
+// GET /logout
 exports.logout = async (req, res) => {
   req.session.destroy((err) => {
     if (err) throw err;
