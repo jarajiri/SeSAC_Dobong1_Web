@@ -1,0 +1,15 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  width: 500px;
+  height: 50px;
+  background-color: bisque;
+  font-size: 50px;
+  color: brown;
+  text-align: center;
+  align-items: center;
+}
