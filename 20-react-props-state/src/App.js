@@ -13,6 +13,13 @@ function App() {
       <ClassProps2 name="포비" color="white" nickname="곰" bgColor="black"></ClassProps2>
       <FunctionProps name="수박" number={5} price={1000}></FunctionProps>
       <FunctionProps2 price={50000}></FunctionProps2>
+      <FunctionProps2 name="딸기" price={10000}>
+        <section style={{ backgroundColor: "yellow" }}>
+          <article>1</article>
+          <article>2</article>
+          <article>3</article>
+        </section>
+      </FunctionProps2>
     </>
   );
 }
