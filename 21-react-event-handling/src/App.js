@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SyntheticEvent from "./SyntheticEvent";
+import Counter from "./Counter";
+// import { HandlerEx1, HandlerEx2, HandlerEx3, HandlerEx4 } from "./component/ex/HandlerEx";
+// import Select from "./practice/Select";
+import EntirePractice from "./entire/EntirePractice";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <h1>합성 이벤트</h1>
+      <SyntheticEvent />
+      <Counter />
+      <HandlerEx1 />
+      <HandlerEx2 />
+      <HandlerEx3 />
+      <Select /> */}
+      <EntirePractice />
+    </>
   );
 }
 

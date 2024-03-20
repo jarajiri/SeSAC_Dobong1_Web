@@ -1,4 +1,5 @@
 import img from "../abc.svg";
+import PropTypes from "prop-types";
 export function PropsPra1(props) {
   const propsColor = {
     color: props.color,
@@ -33,16 +34,15 @@ export function PropsPra3({ text, valid }) {
   return (
     <>
       <div>{text}</div>
-      <button
-        onClick={() => {
-          console.log(valid);
-        }}>
-        alert
-      </button>
+      <button onClick={valid}>콘솔띄우기</button>
     </>
   );
 }
 
 PropsPra3.defaultProps = {
   text: "이건 기본 text props 입니다.",
+};
+
+PropsPra3.propTypes = {
+  text: PropTypes.string.isRequired,
 };
