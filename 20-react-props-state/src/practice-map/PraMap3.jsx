@@ -3,9 +3,9 @@ import { useState } from "react";
 
 export default function PracticeMap3() {
   const [comment, setComment] = useState([
-    { writer: "보아", title: "나는 코딩 천재" },
-    { writer: "윤정", title: "화이팅!!" },
-    { writer: "오진", title: "집에 가고 싶다.." },
+    { writer: "홍길동", title: "제목1" },
+    { writer: "윤석렬", title: "제목2" },
+    { writer: "이재명", title: "제목3" },
   ]);
   const [result, setResult] = useState([]);
   const [inputTitle, setInputTitle] = useState(""); // 작성자 등록 input
