@@ -6,10 +6,11 @@ export default function RefEx1() {
   const refDiv = useRef();
   const refInput = useRef();
   const changeColor = () => {
-    refDiv.current.style.backgroundColor = color;
-    setColor("");
+    setColor(refInput.current.value);
+    refInput.current.value = "";
     refInput.current.focus();
   };
+
   return (
     <div
       style={{
@@ -19,16 +20,10 @@ export default function RefEx1() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: color,
       }}
       ref={refDiv}>
-      <input
-        type="text"
-        onChange={(e) => {
-          setColor(e.target.value);
-        }}
-        value={color}
-        ref={refInput}
-      />
+      <input type="text" ref={refInput} />
       <button onClick={changeColor}>색 적용</button>
     </div>
   );

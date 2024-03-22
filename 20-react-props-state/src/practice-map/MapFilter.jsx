@@ -87,13 +87,10 @@ const MapFilter2 = () => {
   const writerRef = useRef();
 
   const addData = () => {
-    let ref;
     if (title.trim().length === 0) {
-      ref = titleRef;
-      return handleFocus(ref);
+      return handleFocus(titleRef);
     } else if (writer.trim().length === 0) {
-      ref = writerRef;
-      return handleFocus(ref);
+      return handleFocus(writerRef);
     }
     setData([
       ...data,
@@ -103,6 +100,8 @@ const MapFilter2 = () => {
         writer,
       },
     ]);
+    setTitle("");
+    setWriter("");
   };
 
   const searchingData = () => {
@@ -128,6 +127,7 @@ const MapFilter2 = () => {
             setWriter(e.target.value);
           }}
           ref={writerRef}
+          value={writer}
         />
         <input
           type="text"
@@ -136,6 +136,7 @@ const MapFilter2 = () => {
             setTitle(e.target.value);
           }}
           ref={titleRef}
+          value={title}
         />
         <button onClick={addData}>작성</button>
       </fieldset>
