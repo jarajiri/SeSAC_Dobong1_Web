@@ -1,0 +1,177 @@
+/* 
+1. 기본 
+    -nesting
+    -자기 자신 선택자 &
+    -변수 사용
+*/
+// 부분 파일 가져오기
+@import "utils";
+
+// $color-blue: blue;
+$box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+
+.div1 {
+  width: 100px;
+  height: 100px;
+  background-color: $color-red;
+  .div2 {
+    width: 50%;
+    height: 50%;
+    background-color: orange;
+    box-shadow: inset $box-shadow; //변수랑 속성 같이 사용 가능
+    .div3 {
+      background-color: yellow;
+      width: 50%;
+      height: 50%;
+      box-shadow: $box-shadow;
+    }
+  }
+  .btn {
+    display: inline-block;
+    transition: 0.4s;
+    width: 33%;
+    height: 40px;
+    font-size: 10px;
+    padding: 0;
+    color: white;
+    &.orangered {
+      background-color: $color-orange;
+    }
+    &--opacity {
+      opacity: 0.5;
+      &:hover {
+        opacity: 0.2;
+      }
+    }
+    &--blue {
+      background-color: $color-blue;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  background-color: gainsboro;
+
+  .box1 {
+    @include box;
+    // &:nth-child(1) {
+    //   width: 100px;
+    // }
+    // &:nth-child(2) {
+    //   width: 120px;
+    // }
+    // &:nth-child(3) {
+    //   width: 140px;
+    // }
+    // 1부터 3까지 1,2,3 포함
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        // 연산이 아닌곳에 보간(?)이 필요함 #{}
+        width: 80px +20px * $i;
+      }
+    }
+  }
+  .circle {
+    // @include circle($color-red, 0.8);
+    $circleBgColors: ($color-orange, $color-blue, $color-green);
+
+    // &:nth-of-type(1) {
+    //   @include circle($color-red, 0.8);
+    // }
+    // &:nth-of-type(2) {
+    // }
+    // &:nth-of-type(3) {
+    // }
+
+    @each $el in $circleBgColors {
+      // index($리스트, $리스트의 value)
+      // 반환값 리스트의 value에 대한 index:1,2,3...
+      $index: index($circleBgColors, $el);
+      &:nth-of-type(#{$index}) {
+        @include circle($el, 0.8);
+      }
+    }
+  }
+  .box2 {
+    @include box2();
+    &:nth-of-type(4) {
+      @include box2($color-yellow, 20px, navy);
+    }
+    &:nth-of-type(5) {
+      @include box2(skyblue, 30px, black);
+    }
+  }
+}
+
+//이미지에 접근하기
+.img-test {
+  width: 100px;
+  height: 100px;
+  border: 1px solid blue;
+  &.src-img {
+    background-image: url("../assets/crazy.webp");
+  }
+  &.public-img {
+    // public을 루트경로로 절대경로로 접근
+    background-image: url("/assets/crazy.webp");
+  }
+}
+
+.practice {
+  div {
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        width: 100px;
+        height: 100px;
+        background-color: $color-blue;
+        margin: 50px 0;
+        border-radius: 10%;
+        background-image: url("/assets/p#{$i}.png");
+      }
+    }
+  }
+}
+
+//애벌레 실습
+.practice1 {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  .item {
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        @if $i == 6 {
+          width: 30px;
+          height: 30px;
+          bottom: 210px;
+          right: 210px;
+          background-color: white;
+          z-index: $i;
+        } @else if $i == 7 {
+          width: 10px;
+          height: 10px;
+          bottom: 220px;
+          right: 230px;
+          background-color: black;
+          z-index: $i;
+        } @else {
+          background-color: blue;
+          bottom: $i * 30px;
+          right: $i * 30px;
+          z-index: $i;
+        }
+      }
+    }
+  }
+
+  .grass {
+    width: 100px;
+    height: 100px;
+    background-image: url("../assets/grass.png");
+  }
+}

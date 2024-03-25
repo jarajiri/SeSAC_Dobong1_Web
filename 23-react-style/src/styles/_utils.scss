@@ -1,0 +1,45 @@
+$color-red: rgb(230, 58, 58);
+$color-orange: rgb(241, 188, 73);
+$color-yellow: rgb(236, 230, 42);
+$color-green: rgb(35, 212, 0);
+$color-blue: rgb(59, 105, 241);
+
+$boxShadow: 2px 2px 2rgba (0, 0, 0, 0.7);
+$animation-duration: 0.4s;
+
+//매개변수가 없는 믹스인
+@mixin box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  display: inline-block;
+  box-sizing: border-box;
+}
+// 매개변수가 있는 믹스인
+@mixin circle($circleColor, $circleOpacity) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: inline-block;
+  background-color: $circleColor;
+  opacity: $circleOpacity;
+}
+
+@mixin box2($boxBgColor: $color-red, $boxFontSize: 15px, $boxColor: white) {
+  // 매개변수를 지정하지 않았을때 기본값을 설정할 수있음
+  @include box();
+  background-color: $boxBgColor;
+  font-size: $boxFontSize;
+  color: $boxColor;
+  text-align: center;
+  line-height: 100px;
+
+  @if $boxBgColor==$color-red {
+    border-radius: 50%;
+  } @else if $boxColor==black {
+    border-radius: 20%;
+  } @else {
+    border-radius: 0%;
+  }
+}
