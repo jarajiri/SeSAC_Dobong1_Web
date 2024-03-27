@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+}
+// header
+header {
+  background-color: rgb(162, 202, 202);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  .menu-item {
+    margin: 0 8px;
+  }
+}
+
+// mainPage
+.mainPage {
+  background-color: rgb(206, 234, 225);
+  min-height: 100vh;
+  &.dark {
+    background-color: black;
+    color: white;
+  }
+}
+
+.productPage {
+  background-color: rgb(144, 172, 221);
+  min-height: 100vh;
+}
+
+.productItem {
+  color: brown;
+  text-decoration: none;
+  &:hover {
+    color: black;
+    font-weight: 700;
+  }
+  ul {
+    margin: 30px auto;
+    background-color: white;
+    width: 80vw;
+  }
+}
