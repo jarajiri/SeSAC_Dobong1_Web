@@ -1,55 +1,41 @@
-const initialState = {
+const init = {
   list: [
     {
       id: 0,
-      text: "리액트 공부하기",
+      text: "111",
       done: false,
     },
     {
       id: 1,
-      text: "자바 공부하기",
-      done: true,
+      text: "222",
+      done: false,
     },
     {
       id: 2,
-      text: "데이터베이스 공부하기",
+      text: "333",
       done: false,
     },
-    {},
   ],
 };
 
-const CREATE = "todo/CREATE";
-const DONE = "todo/DONE";
+let idx = init.list.length;
+init["nextID"] = idx;
 
-let count = initialState.list.length;
-initialState["nextID"] = count;
-
-export const create = (payload) => ({
-  //payload = { id: nextID, text: todoRef.current.value }
-  type: CREATE,
-  payload: payload, //object {id,text}
-});
-export const done = (id) => ({
-  type: DONE,
-  id: id, //number
-});
-
-export const todoReducer = (state = initialState, action) => {
+export const todo = (state = init, action) => {
   switch (action.type) {
-    case CREATE:
+    case "todo/CREATE":
       if (action.payload.text.trim() === "") return state;
-
       return {
-        ...state,
+        ...state, // list라는 키값안에 있는 배열 요소들을 나열 이름은 그대로 list 키값
         list: state.list.concat({
+          // 키값에 배열 요소 추가
           id: action.payload.id,
           text: action.payload.text,
           done: false,
         }),
         nextID: action.payload.id + 1,
       };
-    case DONE:
+    case "todo/DONE":
       return {
         ...state,
         list: state.list.map((li) => {
@@ -63,7 +49,6 @@ export const todoReducer = (state = initialState, action) => {
           }
         }),
       };
-
     default:
       return state;
   }
