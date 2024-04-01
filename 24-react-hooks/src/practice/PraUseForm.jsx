@@ -16,8 +16,6 @@ const PraUseForm = () => {
     console.log("invalid========", data);
   };
 
-  console.log();
-
   return (
     <>
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
