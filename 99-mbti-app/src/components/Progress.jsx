@@ -12,7 +12,7 @@ const Fill = styled.div`
 const Guage = styled.div`
   background-color: #4ae7e7;
   height: 100%;
-  width: ${(props) => props.percent}%;
+  width: ${(props) => props.$percent}%;
   transition: 0.4s;
 `;
 
@@ -23,7 +23,7 @@ const Progress = ({ page, maxPage }) => {
         {page}/{maxPage}
       </div>
       <Fill>
-        <Guage percent={(page / maxPage) * 100}></Guage>
+        <Guage $percent={(page / maxPage) * 100}></Guage>
       </Fill>
     </ProgressContainer>
   );

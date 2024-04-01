@@ -16,8 +16,7 @@ const VS = styled.p`
 
 const Mbti = () => {
   const survey = useSelector((state) => state.mbti.survey);
-  //   console.log(survey);
-  const page = useSelector((state) => state.mbti.page); // 1
+  const page = useSelector((state) => state.mbti.page);
 
   const dispatch = useDispatch();
   return (
@@ -26,18 +25,16 @@ const Mbti = () => {
       <ul>
         {survey[page - 1].answer.map((item, idx) => {
           return (
-            <>
-              <li key={idx}>
-                <SkyblueButton
-                  text={item.text}
-                  clickEvent={() => {
-                    dispatch(next());
-                    dispatch(check(item.result));
-                  }}
-                />
-              </li>
-              {idx === 0 && <VS>VS</VS>}
-            </>
+            <li key={`li${idx}`}>
+              <SkyblueButton
+                text={item.text}
+                clickEvent={() => {
+                  dispatch(next());
+                  dispatch(check(item.result));
+                }}
+              />
+              {idx === 0 && <VS key={`VS${idx}`}>VS</VS>}
+            </li>
           );
         })}
       </ul>

@@ -1,6 +1,6 @@
 let number: number = 1;
 console.log(number);
-// number = "string"; //string ㅌ아비은 number타입으로 할당될 수 없음
+// number = "string"; //string 타입 number타입으로 할당될 수 없음
 
 /* 기본 타입 */
 let str: string = "str";
