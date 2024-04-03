@@ -3,27 +3,27 @@
 
 let drink: [string, string] = ["a", "b"];
 let drink2: [string, string, number];
-// let drink3: Array<string & string>;
 drink2 = ["cola", "콜라", 1];
 
 console.log(drink2);
 console.log(drink2[0]);
 console.log(...drink2);
 
-drink2.push("???");
+drink2.push("사이다");
 console.log(drink2); //ok
 
 // drink2.push(null); // 안됨
+
 // typescript의 type 추론
 /* 
 네번째 데이터 타입은 미리 선언되어 있지 않지만,
 string, number 로만 이루어진 튜플을 선언했기 때문에
 타입스크립트가 자동으로 타입을 추론해서 결정함 (string|number)[]
 */
+
 let drink3: readonly [string, number] = ["cola", 2000];
 // drink3[0] = 'cider'; // 수정 불가
 // drink3.push('???'); // 수정 불가
-let drink4: ReadonlyArray<string | number> = ["string", 2000];
 
 //enum
 console.log("enum===============================");

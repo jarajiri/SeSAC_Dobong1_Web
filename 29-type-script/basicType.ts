@@ -3,12 +3,14 @@ console.log(number);
 // number = "string"; //string 타입 number타입으로 할당될 수 없음
 
 /* 기본 타입 */
+// number,string,boolean,undefined,null
 let str: string = "str";
 let isTrue: boolean = true;
 let undef: undefined;
 let empty: null = null;
 
-/* Object */
+/* 참조형 타입 */
+// array,object,function
 let numArr: number[] = [1, 2, 3, 4, 5];
 let stringArr: Array<string> = ["a", "b", "c", "d", "e"];
 
@@ -23,6 +25,7 @@ const arr3: Array<boolean | null | number[]> = [true, null, [1, 2, 3]];
 const arr4: Array<any> = [1, 2, "a", "b", true, null, undefined, [], {}];
 
 // object
+// 이렇게 잘안씀
 let obj1: object = {
   name: "rimeboret",
   age: 11,

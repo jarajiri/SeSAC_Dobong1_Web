@@ -20,3 +20,10 @@ let heroGame_B: Game = {
   category: "롤플레잉",
   platform: "모바일",
 };
+
+const obj = {
+  red: "apple",
+  yellow: "banana",
+  green: "cucumber",
+};
+console.log(typeof obj.red);
