@@ -9,10 +9,10 @@ const prints = (a: number, b: number, c: number): void => {
 function print(a: number, b: number, c?: number): void {
   console.log(a);
   console.log(b);
-  console.log(c);
+  if (c != undefined) console.log(c);
 }
 print(1, 2, 3);
-print(1, 2);
+print(1, 2); // 매개변수가 2개 들어와도 오류 없음
 
 function sayHello() {
   console.log("hello");
@@ -29,7 +29,7 @@ console.log(concatStr("안", 1));
 function circleArea(r: number): number {
   return r * r * Math.PI;
 }
-console.log(circleArea(5));
+console.log("원의 넓이" + circleArea(5));
 
 const triangleArea = (w: number, h: number): number => (w * h) / 2;
 console.log("삼각형의 넓이" + triangleArea(3, 5));

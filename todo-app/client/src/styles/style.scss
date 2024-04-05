@@ -1,0 +1,39 @@
+main {
+  background-color: black;
+  .ListContainer {
+    .TodoList {
+      border: 2px solid black;
+      color: white;
+      h2 {
+        color: red;
+      }
+      div {
+        button {
+          background-color: black;
+          color: white;
+          &:hover {
+            color: red;
+            background-color: black;
+          }
+        }
+      }
+      li {
+        button {
+          background-color: black;
+          color: white;
+          &:hover {
+            color: red;
+            background-color: black;
+          }
+        }
+      }
+    }
+    .DoneList {
+      border: 2px solid gray;
+      color: green;
+      li {
+        color: white;
+      }
+    }
+  }
+}

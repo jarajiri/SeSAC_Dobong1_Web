@@ -30,3 +30,5 @@ let obj1: object = {
   name: "rimeboret",
   age: 11,
 };
+
+console.log(obj1);
