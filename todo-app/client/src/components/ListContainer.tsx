@@ -4,6 +4,7 @@ import DoneList from "./DoneList";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { init } from "../store/module/todo";
+import TodoList2 from "./TodoList2";
 
 const ListContainer = () => {
   // 백엔드 서버로 axios 요청
@@ -21,7 +22,8 @@ const ListContainer = () => {
 
   return (
     <div className="ListContainer">
-      <TodoList />
+      {/* <TodoList /> */}
+      <TodoList2 />
       <DoneList />
     </div>
   );

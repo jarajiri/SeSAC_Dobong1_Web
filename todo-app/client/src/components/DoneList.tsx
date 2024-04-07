@@ -3,17 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReduxState } from "../types/interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { done } from "../store/module/todo";
+import { del, done } from "../store/module/todo";
+import axios from "axios";
 
 const DoneList = () => {
   const list = useSelector((state: ReduxState) => state.todo.list);
 
   const dispatch = useDispatch();
 
-  const deleteTodo = (id: number) => {
-    console.log(id);
-    dispatch(done(id));
-    console.log(list);
+  const deleteTodo = async (id: number) => {
+    // console.log(id);
+    dispatch(del(id));
+    // console.log(list);
+    // 백단에 요청 보내기
+    await axios.delete(`${process.env.REACT_APP_API_SERVER}/todo/${id}`);
   };
 
   const doneList = list.filter((li) => li.done === true);

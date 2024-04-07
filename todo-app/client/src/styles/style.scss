@@ -33,6 +33,14 @@ main {
       color: green;
       li {
         color: white;
+        button {
+          background-color: black;
+          color: white;
+          &:hover {
+            color: red;
+            background-color: black;
+          }
+        }
       }
     }
   }

@@ -15,6 +15,8 @@ const initialState: TodoState = {
 const INIT = "todo/INIT" as const;
 const CREATE = "todo/CREATE"; // as const는 생략해도 상수이기때문에 문자열 리터럴타입이 지정된다
 const DONE = "todo/DONE" as const;
+const DELETE = "todo/DELETE" as const;
+const UPDATE = "todo/UPDATE" as const;
 
 let count = initialState.list.length;
 initialState["nextID"] = count;
@@ -33,6 +35,15 @@ export const done = (id: number) => ({
   type: DONE,
   id: id, //number
 });
+export const del = (id: number) => ({
+  type: DELETE,
+  id: id,
+});
+export const update = (id: number, text: string) => ({
+  type: UPDATE,
+  id,
+  text,
+});
 
 interface Create {
   type: typeof CREATE;
@@ -46,7 +57,16 @@ interface Init {
   type: typeof INIT;
   data: Todo[];
 }
-type Action = Create | Done | Init;
+interface Delete {
+  type: typeof DELETE;
+  id: number;
+}
+interface Update {
+  type: typeof UPDATE;
+  id: number;
+  text: string;
+}
+type Action = Create | Done | Init | Delete | Update;
 
 export const todoReducer = (
   state: TodoState = initialState,
@@ -88,7 +108,23 @@ export const todoReducer = (
           }
         }),
       };
-
+    case DELETE:
+      return {
+        ...state,
+        list: state.list.filter((li) => li.id !== action.id),
+      };
+    case UPDATE:
+      return {
+        ...state,
+        list: state.list.map((li) =>
+          li.id === action.id
+            ? {
+                ...li,
+                text: action.text,
+              }
+            : li
+        ),
+      };
     default:
       return state;
   }

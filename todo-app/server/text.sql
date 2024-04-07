@@ -2,5 +2,6 @@
 show tables;
 desc todo;
 drop table todo;
-
 select * from todo;
+insert into todo (text,done) values ('할일1',0);
+
