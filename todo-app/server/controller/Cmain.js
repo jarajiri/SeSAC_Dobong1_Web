@@ -8,7 +8,7 @@ exports.getIndex = (req, res) => {
 exports.getUser = (req, res) => {
   res.send("response from api server [GET /api-server/user]");
 };
-
+// GET /api-server/todos
 exports.getTodos = async (req, res) => {
   try {
     const todoAll = await Todo.findAll(); //[{id,text,done}]
@@ -71,6 +71,7 @@ exports.patchTodo = async (req, res) => {
     console.log("server error", error);
     res.status(500).send("server error, 관리자는 집에 갔습니다");
   } */
+
   try {
     const { todoId } = req.params;
     console.log(req.params);

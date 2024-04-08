@@ -17,5 +17,7 @@ router.patch("/todo/:todoId", controller.patchTodo);
 // DELETE /api-server/todo/:todoId
 // 특정 todo 삭제
 router.delete("/todo/:todoId", controller.deleteTodo);
+// PATCH /api-server/content
+// /api-server/content
 router.patch("/content", controller.patchContent);
 module.exports = router;
