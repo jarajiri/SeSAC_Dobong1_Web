@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create, del, done, update } from "../store/module/todo";
+import { create, destroy, done, update } from "../store/module/todo";
 import { ReduxState } from "../types/interface";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +27,6 @@ const TodoList2 = () => {
       todoRef.current.focus();
     }
   };
-  /* enterCreateTodo: [enter]키 눌렀을 때 할일 추가 */
   const enterCreateTodo = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") createTodo();
   };
@@ -38,7 +37,7 @@ const TodoList2 = () => {
   };
 
   const deleteTodo = async (id: number) => {
-    dispatch(del(id));
+    dispatch(destroy(id));
     await axios.delete(`${process.env.REACT_APP_API_SERVER}/todo/${id}`);
   };
 

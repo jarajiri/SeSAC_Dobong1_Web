@@ -1,0 +1,27 @@
+body {
+  margin: 0 auto;
+}
+#view {
+  background-color: aqua;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+#me {
+  text-align: right;
+  background-color: yellow;
+
+  margin-left: auto;
+}
+#notMe {
+  text-align: left;
+  background-color: white;
+
+  margin-right: auto;
+}
+#notice {
+  background-color: rgb(216, 212, 212);
+  text-align: center;
+  margin-inline: auto;
+}

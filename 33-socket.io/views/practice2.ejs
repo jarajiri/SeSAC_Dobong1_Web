@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/practice2.css" />
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div id="view">
+      <!-- <div id="me">안녕</div>
+      <div id="notMe">ㅎㅇ</div>
+      <div id="me">꺼져</div>
+      <div id="notMe">;;</div> -->
+    </div>
+    <input type="text" placeholder="내용" id="msg" />
+    <button type="button" id="sendButton">전송</button>
+  </body>
+  <script>
+    const socket = io();
+    const view = document.querySelector("#view");
+    const sendButton = document.querySelector("#sendButton");
+    socket.on("notice", (message) => {
+      const newDiv = document.createElement("div");
+      newDiv.id = "notice";
+      newDiv.innerText = message;
+      view.append(newDiv);
+    });
+
+    sendButton.addEventListener("click", () => {
+      const text = document.querySelector("#msg").value;
+      console.log(text);
+      socket.emit("newMessage", text);
+    });
+
+    socket.on("sendAll", (text, id) => {
+      console.log(text);
+      console.log(id);
+      const newDiv = document.createElement("div");
+      newDiv.id = "notMe";
+      if (socket.id === id) newDiv.id = "me";
+      newDiv.innerText = `[${id}]  ${text}`;
+      view.append(newDiv);
+    });
+  </script>
+</html>

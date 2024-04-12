@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReduxState } from "../types/interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { del, done } from "../store/module/todo";
+import { destroy } from "../store/module/todo";
 import axios from "axios";
 
 const DoneList = () => {
@@ -13,7 +13,7 @@ const DoneList = () => {
 
   const deleteTodo = async (id: number) => {
     // console.log(id);
-    dispatch(del(id));
+    dispatch(destroy(id));
     // console.log(list);
     // 백단에 요청 보내기
     await axios.delete(`${process.env.REACT_APP_API_SERVER}/todo/${id}`);

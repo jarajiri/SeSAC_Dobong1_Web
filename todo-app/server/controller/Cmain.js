@@ -76,10 +76,6 @@ exports.patchTodo = async (req, res) => {
     const { todoId } = req.params;
     console.log(req.params);
     const [isUpdated] = await Todo.update(
-      /* 
-      sequelize import 해와야 합니다.
-      sequelize.literal: query를 날릴(?) 수 있도록 도와줌
-      */
       { done: sequelize.literal("NOT done") }, // 현재값과 반대로 하기 위해서 실제 sql query문 사용
       { where: { id: todoId } }
     );
@@ -106,9 +102,7 @@ exports.deleteTodo = async (req, res) => {
     res.status(500).send("SERVER ERROR! 관리자에게 문의하세요");
   }
 };
-
-// [추가] 내용수정하기
-// /api-server/content
+// PATCH /api-server/content
 exports.patchContent = async (req, res) => {
   try {
     const { id, text } = req.body;

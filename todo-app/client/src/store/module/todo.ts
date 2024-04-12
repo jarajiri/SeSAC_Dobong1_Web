@@ -35,7 +35,7 @@ export const done = (id: number) => ({
   type: DONE,
   id: id, //number
 });
-export const del = (id: number) => ({
+export const destroy = (id: number) => ({
   type: DELETE,
   id: id,
 });

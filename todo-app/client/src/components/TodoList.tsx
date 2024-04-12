@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create, del, done } from "../store/module/todo";
+import { create, destroy, done } from "../store/module/todo";
 import { ReduxState } from "../types/interface";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,7 +54,7 @@ const TodoList = () => {
   /* deleteTodo: 특정 todo 삭제 */
   const deleteTodo = async (id: number) => {
     // console.log(id);
-    dispatch(del(id));
+    dispatch(destroy(id));
     // console.log(list);
     // 백단에 요청 보내기
     await axios.delete(`${process.env.REACT_APP_API_SERVER}/todo/${id}`);
