@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>socket.io 복습</title>
+  </head>
+  <body>
+    <h2>socket.io로 채팅만들기</h2>
+    <ul></ul>
+    <form id="chat">
+      <input type="text" id="user" placeholder="user" />
+      <input type="text" id="message" placeholder="message" />
+      <button type="submit">채팅보내기</button>
+      <script src="/socket.io/socket.io.js"></script>
+    </form>
+  </body>
+  <script>
+    const socket = io();
+    // socket.emit("event_name", "hello", 10, { name: "rime" }, (res) => {
+    //   console.log("서버에서 콜백함수의 인자 전달한 것 : ", res);
+    // });
+
+    //form
+    const chatForm = document.forms["chat"];
+    const user = document.querySelector("#user");
+    const message = document.querySelector("#message");
+
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const messageInfo = {
+        user: user.value,
+        message: message.value,
+      };
+      socket.emit("newMessage", messageInfo);
+      socket.on("resNewMessage", (res) => {
+        console.log(res);
+      });
+    });
+  </script>
+</html>
