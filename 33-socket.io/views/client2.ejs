@@ -8,22 +8,29 @@
   </head>
   <body>
     <h2>Hello world</h2>
-    <button type="button" id="helloButton">hello</button><br />
+    <button type="button" id="helloButton" onclick="clickHello()">hello</button
+    ><br />
     <button type="button" id="studyButton">study</button><br />
     <button type="button" id="byeButton">bye</button>
     <p id="text"></p>
+
     <script>
       const socket = io();
       const helloButton = document.querySelector("#helloButton");
       const studyButton = document.querySelector("#studyButton");
       const byeButton = document.querySelector("#byeButton");
       const p = document.querySelector("#text");
-      helloButton.addEventListener("click", () => {
-        socket.emit("hello", "hello");
-        socket.on("send_hello", (message) => {
+      // helloButton.addEventListener("click", () => {
+      //   socket.emit("hello", "hello", (message) => {
+      //     p.innerText = `${message} :: ㅎㅇ`;
+      //   });
+      // });
+
+      function clickHello() {
+        socket.emit("hello", "hello", (message) => {
           p.innerText = `${message} :: ㅎㅇ`;
         });
-      });
+      }
       studyButton.addEventListener("click", () => {
         socket.emit("study", "study");
         socket.on("send_study", (message) => {
