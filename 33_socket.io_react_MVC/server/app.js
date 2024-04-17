@@ -1,11 +1,11 @@
 const express = require("express");
 const http = require("http");
-const socketHandler = require("./sockets");
+const socketHandler1 = require("./sockets/index1");
 
 const PORT = 8080;
 const app = express();
 const server = http.createServer(app);
-socketHandler(server);
+socketHandler1(server);
 
 const cors = require("cors");
 app.use(cors());
