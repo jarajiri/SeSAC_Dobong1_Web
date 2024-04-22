@@ -1,4 +1,3 @@
-const { QueryTypes } = require("sequelize");
 const { Todo, sequelize } = require("../models");
 //test 용 api
 exports.getIndex = (req, res) => {

@@ -1,7 +1,4 @@
--- Active: 1707101283311@@127.0.0.1@3306@DOBONG
+-- Active: 1713492796727@@sesac-rds-rimeboret.c56yicswq7fo.us-east-2.rds.amazonaws.com@3306@sesac
+show databases;
+use sesac;
 show tables;
-desc todo;
-drop table todo;
-select * from todo;
-insert into todo (text,done) values ('할일1',0);
-
