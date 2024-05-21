@@ -8,6 +8,7 @@ public class Practice02 {
         s1.displayInfo();
         s2.displayInfo();
         s3.displayInfo();
+        System.out.println("총 학생 수는 "+Student.totalStudents+"명 입니다.");
     }
 }
 class Student{
