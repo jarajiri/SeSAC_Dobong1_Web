@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>폼 전송 - 실습</p>
+  <form action="/prac/4" method="post">
+    <fieldset>
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name"/>
+      <br/>
+      <label>성별</label>
+      <input type="radio" name="gender" id="male" value="남자">
+      <label for="male">남자</label>
+      <input type="radio" name="gender" id="female" value="여자">
+      <label for="female">여자</label>
+      <br/>
+      <label>생년월일</label>
+      <select name="year" id="year">
+        <option th:each="year : ${#numbers.sequence(1950, 2024)}"
+                th:value="${year}"
+                th:text="${year}"></option>
+      </select>
+      <label for="year">년</label>
+      <select name="month" id="month">
+        <option th:each="month : ${#numbers.sequence(1, 12)}"
+                th:value="${month}"
+                th:text="${month}"></option>
+      </select>
+      <label for="month">월</label>
+      <select name="day" id="day">
+        <option th:each="day : ${#numbers.sequence(1, 31)}"
+                th:value="${day}"
+                th:text="${day}"></option>
+      </select>
+      <label for="day">일</label>
+      <br/>
+      <label>관심사</label>
+      <input type="checkbox" name="favorite" id="trip" th:value="여행"/>
+      <label for="trip">여행</label>
+      <input type="checkbox" name="favorite" id="passion" th:value="패션"/>
+      <label for="passion">패션</label>
+      <input type="checkbox" name="favorite" id="food" th:value="음식"/>
+      <label for="food">음식</label>
+    </fieldset>
+    <button type="submit">회원가입</button>
+  </form>
+  <hr/>
+  <ul th:if="${user}!=null">
+    <li th:text="'이름 : ' + ${user.getName()}"></li>
+    <li th:text="'성별 : ' + ${user.getGender()}"></li>
+    <li th:text="'생년월일 : ' + ${user.getBirth()}"></li>
+    <li th:text="'관심사 : ' + ${user.getFavorite()}"></li>
+  </ul>
+</body>
+</html>

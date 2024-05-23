@@ -8,12 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+    <table th:border="1">
         <tr>
-            <th>이름</th>
-            <th>나이</th>
+            <th scope="col">이름</th>
+            <th scope="col">나이</th>
         </tr>
-        <tr th:each="person:${persons}">
+        <tr th:each="person:${people}">
             <td th:text="${person.getName()}"></td>
             <td th:text="${person.getAge()}"></td>
         </tr>

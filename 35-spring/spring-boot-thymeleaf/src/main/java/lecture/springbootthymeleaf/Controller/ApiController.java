@@ -1,25 +1,21 @@
-package lecture.springbootthymeleaf.controller;
+package lecture.springbootthymeleaf.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
-// localhost:8080/api/~~~~~~
 @Controller
 @RequestMapping("/api")
 public class ApiController {
 
-    // 컨트롤러에서 에러가 발생할 경우, ExceptionHandler가 catch 하여 해당 로직 처리
     @ExceptionHandler
-    public String errHandler(Exception e) {
-        System.out.println("error: " + e.getMessage());
+    public String errHandler(Exception e){
+        System.out.println("error"+e.getMessage());
         return "error";
     }
 
-    // GET localhost:8080/api
     @GetMapping("")
-    public String get() {
+    public String get(){
         return "api";
     }
 
@@ -35,6 +31,7 @@ public class ApiController {
     // }
     // ?name=lily&age=88
     // ?name=lily
+
     @GetMapping("/res1")
     public String getRes1(
             @RequestParam(value = "name") String nickname,
