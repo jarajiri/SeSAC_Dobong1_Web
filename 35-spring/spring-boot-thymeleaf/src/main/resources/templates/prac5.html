@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<body>
+  <p>동적폼 전송 - 실습</p>
+  <form name="axios_form">
+    <fieldset>
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name"/>
+      <br/>
+      <label>성별</label>
+      <input type="radio" name="gender" id="male" value="남자">
+      <label for="male">남자</label>
+      <input type="radio" name="gender" id="female" value="여자">
+      <label for="female">여자</label>
+      <br/>
+      <label>생년월일</label>
+      <select name="year" id="year">
+        <option th:each="year : ${#numbers.sequence(1950, 2024)}"
+                th:value="${year}"
+                th:text="${year}"></option>
+      </select>
+      <label for="year">년</label>
+      <select name="month" id="month">
+        <option th:each="month : ${#numbers.sequence(1, 12)}"
+                th:value="${month}"
+                th:text="${month}"></option>
+      </select>
+      <label for="month">월</label>
+      <select name="day" id="day">
+        <option th:each="day : ${#numbers.sequence(1, 31)}"
+                th:value="${day}"
+                th:text="${day}"></option>
+      </select>
+      <label for="day">일</label>
+      <br/>
+      <label>관심사</label>
+      <input type="checkbox" name="favorite" id="trip" th:value="여행"/>
+      <label for="trip">여행</label>
+      <input type="checkbox" name="favorite" id="passion" th:value="패션"/>
+      <label for="passion">패션</label>
+      <input type="checkbox" name="favorite" id="food" th:value="음식"/>
+      <label for="food">음식</label>
+    </fieldset>
+    <button type="button" onclick="axiosPost()">회원가입</button>
+  </form>
+  <hr/>
+  <ul th:if="${user}!=null">
+    <li th:text="'이름 : ' + ${user.name}"></li>
+    <li th:text="'성별 : ' + ${user.gender}"></li>
+    <li th:text="'생년월일 : ' + ${user.birth}"></li>
+    <li th:text="'관심사 : ' + ${user.favorite}"></li>
+  </ul>
+  <script>
+    function axiosPost() {
+      const form = document.forms["axios_form"];
+      const favorites = [];
+
+      // 모든 체크박스 요소를 반복하면서 체크된 값만 배열에 추가
+      form.querySelectorAll('input[name="favorite"]:checked').forEach(checkbox => {
+        favorites.push(checkbox.value);
+      });
+
+      const userInfo = {
+        name: form.name.value,
+        gender: form.gender.value,
+        year: form.year.value,
+        month: form.month.value,
+        day: form.day.value,
+        favorite: favorites // 배열로 수집된 값을 할당
+      };
+
+      axios.post("/prac/5", userInfo)
+              .then(res => {
+                console.log(res.data);
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+    }
+  </script>
+</body>
+</html>

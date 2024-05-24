@@ -1,5 +1,8 @@
 package lecture.springbootthymeleaf.Controller;
 
+import lecture.springbootthymeleaf.Dto.UserDto;
+import lecture.springbootthymeleaf.Vo.UserVo;
+import lecture.springbootthymeleaf.Vo.UserVo2;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
@@ -35,13 +38,15 @@ public class PracticeController {
         return "prac2";
     }
 
-    @GetMapping("/introduce/{name}") @ResponseBody
+    @GetMapping("/introduce/{name}")
+    @ResponseBody
     public String prac3_1(
             @PathVariable String name) {
         return "내 이름은 " + name;
     }
 
-    @GetMapping("/introduce2") @ResponseBody
+    @GetMapping("/introduce2")
+    @ResponseBody
     public String prac3_2(
             @RequestParam String name,
             @RequestParam Integer age) {
@@ -68,9 +73,24 @@ public class PracticeController {
         return "prac4";
     }
 
+    // 동적폼전송 실습
+    @GetMapping("/prac/5")
+    public String prac5_form() {
+        return "prac5";
+    }
+
+    @PostMapping("/prac/5")
+    @ResponseBody
+    public String prac5_result(
+            @RequestBody UserVo2 userVo2
+    ){
+        System.out.println(userVo2);
+        return userVo2.getName()+"회원가입 성공\n" + userVo2 ;
+    }
 }
 
-@Getter @Setter
+@Getter
+@Setter
 class User {
     private String name;
     private String gender;
