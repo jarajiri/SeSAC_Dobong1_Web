@@ -4,4 +4,8 @@
     <select id="retrieveAll" resultType="lecture.spring_boot_mybatis.domain.User">
         select user.* from user
     </select>
+    <select id="getOneUser" resultType="lecture.spring_boot_mybatis.domain.User" parameterType="Integer">
+        select user.* from user where id = #{id}
+    </select>
+
 </mapper>

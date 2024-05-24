@@ -30,5 +30,14 @@ public class UserService {
         return users;
     }
 
+    public UserDto getOneUser(Integer id){
+        User result = userMapper.getOneUser(id);
+        UserDto userDto = new UserDto();
+        userDto.setId(result.getId());
+        userDto.setName(result.getName());
+        userDto.setNickname(result.getNickname());
+        userDto.setNo(result.getId());
+        return userDto;
+    }
 
 }
