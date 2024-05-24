@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <body>
   <h3>get 전송</h3>
   <form action="/api/res1" method="get">
@@ -27,5 +28,72 @@
     나이: <input type="number" name="age">
     <button type="submit">전송</button>
   </form>
+  <br/>
+  <h3>post 전송 (DTO 객체)</h3>
+  <form action="/api/res5" method="post">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+  <br/>
+  <h3>post 전송 (VO 객체)</h3>
+  <form action="/api/res6" method="post">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+  <br/>
+  <h3>post 전송 (DTO 객체, RequestBody)</h3>
+  <form action="/api/res7" method="post">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+  <br/>
+  <h3>post 전송 (VO 객체, RequestBody)</h3>
+  <form action="/api/res8" method="post">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+  <br/>
+  <h3>post 동적 폼 전송 (DTO 객체, RequestBody)</h3>
+  <form id="form_res9">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="button" onclick="res9()">전송</button>
+  </form>
+  <br/>
+  <h3>post 동적 폼 전송 (VO 객체, RequestBody)</h3>
+  <form id="form_res10">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="button" onclick="res10()">전송</button>
+  </form>
+  <br/>
+  <script>
+    function res9() {
+      const form = document.forms["form_res9"];
+      const data = {
+        name:form.name.value,
+        age:form.age.value
+      }
+      axios.post("/api/res9",data).then((res)=>console.log(res.data));
+    }
+    function res10() {
+      const form = document.forms["form_res10"];
+      const data = {
+        name:form.name.value,
+        age:form.age.value
+      }
+      axios.post("/api/res10",data).then((res)=>console.log(res.data));
+    }
+  </script>
 </body>
 </html>

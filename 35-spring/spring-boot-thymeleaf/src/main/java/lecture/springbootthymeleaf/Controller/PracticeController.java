@@ -1,6 +1,7 @@
 package lecture.springbootthymeleaf.Controller;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,15 +35,13 @@ public class PracticeController {
         return "prac2";
     }
 
-    @GetMapping("/introduce/{name}")
-    @ResponseBody
+    @GetMapping("/introduce/{name}") @ResponseBody
     public String prac3_1(
             @PathVariable String name) {
         return "내 이름은 " + name;
     }
 
-    @GetMapping("/introduce2")
-    @ResponseBody
+    @GetMapping("/introduce2") @ResponseBody
     public String prac3_2(
             @RequestParam String name,
             @RequestParam Integer age) {
@@ -69,48 +68,48 @@ public class PracticeController {
         return "prac4";
     }
 
-    @Getter
-    class User {
-        private String name;
-        private String gender;
-        private LocalDate birth;
-        private String favorite;
+}
 
-        public User(String name, String gender, String favorite, Integer year, Integer month, Integer day) {
-            this.name = name;
-            this.gender = gender;
-            this.favorite = favorite;
-            this.birth = LocalDate.of(year, month, day);
-            System.out.println(birth);
-        }
+@Getter @Setter
+class User {
+    private String name;
+    private String gender;
+    private LocalDate birth;
+    private String favorite;
 
-        @Override
-        public String toString() {
-            return "User{" +
-                    "name='" + name + '\'' +
-                    ", gender='" + gender + '\'' +
-                    ", birth=" + birth +
-                    ", favorite='" + favorite + '\'' +
-                    '}';
-        }
+    public User(String name, String gender, String favorite, Integer year, Integer month, Integer day) {
+        this.name = name;
+        this.gender = gender;
+        this.favorite = favorite;
+        this.birth = LocalDate.of(year, month, day);
+        System.out.println(birth);
     }
 
-    class Person {
-        private String name;
-        private int age;
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birth=" + birth +
+                ", favorite='" + favorite + '\'' +
+                '}';
+    }
+}
 
-        public Person(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
+class Person {
+    private String name;
+    private int age;
 
-        public String getName() {
-            return name;
-        }
-
-        public int getAge() {
-            return age;
-        }
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
 }
