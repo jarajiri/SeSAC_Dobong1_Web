@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시판 실습</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<body>
+    <h2>게시판</h2>
+    <div>
+        <form action="/board" method="get">
+            <input type="text" name="search" id="search">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+    <div>
+        <form id="form_board">
+            <input type="text" name="title" id="title" placeholder="제목">
+            <input type="text" name="content" id="content" placeholder="내용">
+            <input type="text" name="writer" id="writer" placeholder="작성자">
+            <button type="button" onclick="insertBoard()">작성</button>
+        </form>
+    </div>
+    <!-- boards -->
+    <div th:if="${boards != null && boards.size() > 0}">
+        <table>
+            <colgroup>
+                <col style="width: 10%;">  <!-- No. 열 -->
+                <col style="width: 5%;"> <!-- ID 열 -->
+                <col style="width: 35%;"> <!-- 제목 열 -->
+                <col style="width: 15%;"> <!-- 작성자 열 -->
+                <col style="width: 15%;"> <!-- 작성일 열 -->
+                <col style="width: 10%;"> <!-- 수정 열 -->
+                <col style="width: 10%;"> <!-- 삭제 열 -->
+            </colgroup>
+            <tr>
+                <th>No.</th>
+                <th>ID</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+            <tr th:each="board : ${boards}">
+                <td th:text="${board.no}"></td>
+                <td th:text="${board.id}"></td>
+                <td th:text="${board.title}"></td>
+                <td th:text="${board.writer}"></td>
+                <td th:text="${board.created}"></td>
+                <td style="text-align: center">
+                    <button type="button" th:onclick="updateBoard([[${board.id}]])">수정</button>
+                </td>
+                <td style="text-align: center">
+                    <button type="button" th:onclick="deleteBoard([[${board.id}]])">삭제</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${boards != null && boards.size() > 0}">
+        <p>조회된 게시글이 없어요!!</p>
+    </div>
+
+    <script>
+        const form = document.forms["form_board"];
+
+        function insertBoard() {
+            const title = form.title.value;
+            const content = form.content.value;
+            const writer = form.writer.value;
+
+            const data = {
+                title,
+                content,
+                writer,
+            }
+
+            if (!title || !content || !writer) {
+                alert("모든 필드를 채워주세요.");
+                return;
+            }
+
+            axios.post('/board', data)
+                .then((res) => {
+                    if (res.data.result) {
+                        alert(res.data.msg);
+                        window.location.reload();
+                    } else {
+                        alert(res.data.msg);
+                    }
+                })
+        }
+        function updateBoard(id) {
+            const title = form.title.value;
+            const content = form.content.value;
+            const writer = form.writer.value;
+
+            const data = {
+                title,
+                content,
+                writer,
+            }
+
+            if (!title || !content || !writer) {
+                alert("모든 필드를 채워주세요.");
+                return;
+            }
+            console.log(data);
+            axios.patch(`/board/${id}`, data)
+                .then((res) => {
+                    if (res.data.result) {
+                        alert(res.data.msg);
+                        window.location.reload();
+                    } else {
+                        alert(res.data.msg);
+                    }
+                })
+        }
+        function deleteBoard(id) {
+            axios.delete(`/board/${id}`)
+                .then((res) => {
+                    if (res.data.result) {
+                        alert(res.data.msg);
+                        window.location.reload();
+                    } else {
+                        alert(res.data.msg);
+                    }
+                })
+        }
+    </script>
+</body>
+</html>

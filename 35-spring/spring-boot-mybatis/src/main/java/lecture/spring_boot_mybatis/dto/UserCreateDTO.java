@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class UserDto {
-    private Integer id;
+public class UserCreateDTO {
     private String name;
     private String nickname;
-    private Integer no;
 }
