@@ -1,4 +1,4 @@
-package practice.spring_boot_jpa.entity;
+package lecture.spring_boot_jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
