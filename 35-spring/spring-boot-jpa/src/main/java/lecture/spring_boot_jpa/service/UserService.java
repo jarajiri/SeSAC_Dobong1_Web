@@ -69,4 +69,12 @@ public class UserService {
 
         userRepository.delete(userEntity);
     }
+
+    public UserEntity getTodosByUser(int userId) {
+        UserEntity userEntity = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("user doesn't exist"));
+
+        return userRepository.findTodosByUser(userId);
+        // UserEntity { id, name, nickname, todos: [] }
+    }
 }

@@ -21,4 +21,7 @@ public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     @Query("select u from UserEntity u where u.name = :name")
     // @Query(nativeQuery = true , value = "select * from user where user.name = :name")
     public List<UserEntity> findByNameRaw(String name);
+
+    @Query("SELECT u FROM UserEntity u JOIN FETCH u.todos t WHERE u.id = :userId")
+    UserEntity findTodosByUser(int userId);
 }
