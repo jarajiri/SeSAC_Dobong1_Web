@@ -12,4 +12,5 @@ public class UserDTO {
     private String username;
     private String password;
     private Long id;
+    private String token; // 로그인 응답으로 token 을 전송하기 위함
 }

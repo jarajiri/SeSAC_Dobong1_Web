@@ -3,6 +3,7 @@ package springlecture.springbootsecurity.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import springlecture.springbootsecurity.entity.UserEntity;
 import springlecture.springbootsecurity.repository.UserRepository;
@@ -12,6 +13,8 @@ import springlecture.springbootsecurity.repository.UserRepository;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     public UserEntity create(final UserEntity userEntity){
         if (userEntity == null || userEntity.getEmail() == null) {
@@ -31,6 +34,11 @@ public class UserService {
     }
 
     public UserEntity getByCredentials(final String email, final String password) {
-        return userRepository.findByEmailAndPassword(email, password);
+        UserEntity user = userRepository.findByEmail(email);
+
+        if(user != null && passwordEncoder.matches(password,user.getPassword())){
+            return user;
+        }
+        return null;
     }
 }
